@@ -6,16 +6,14 @@
 
 set -e # exit on error
 
-CHALLENGE1=$1
+export CHALLENGE1=$1
 
 # Check for forbidden functions
 # TODO mcutura DONE
 grep -f poison $CHALLENGE1
 
 # Compile the codechallenge1.c file with our main.c 
-
-# 
-gcc main.c $CHALLENGE1 -o out
+gcc $CHALLENGE1 main.c -o out
 
 #run the compiled file
 TEST_RETURN=$(./out | cat -e)
@@ -25,3 +23,4 @@ if [ "$TEST_RETURN" = "$2" ]; then
 else
     printf "\033[0;31mTest failed !!!! \033[0m"
 fi
+rm -fr out

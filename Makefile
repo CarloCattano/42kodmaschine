@@ -22,7 +22,9 @@ logs:
 	$(DC) -f $(COMP) logs --tail=100 -f moulinette
 user:
 	$(DC) -f $(COMP) exec user vim /rendu/challenge1.c
+#	docker run -it kodmaschine-user
 moulinette:
-	$(DC) -f $(COMP) exec moulinette sh moulinette.sh /rendu/challenge1.c "a\n"
+	$(DC) -f $(COMP) run moulinette
+#	docker run -it kodmaschine-moulinette
 
 help: #TODO: pls help

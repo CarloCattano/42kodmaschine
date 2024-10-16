@@ -1,7 +1,9 @@
 #include <unistd.h>
 #include <stdlib.h>
-#include "challenge.h"
 
-int main() {
+void print_a(void);
+
+int main(void) {
     print_a();
+    return (0);
 }

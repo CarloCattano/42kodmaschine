@@ -1,4 +1,5 @@
 # version: '42'  # Specify the Docker Compose version
+name: "kodmaschine"
 
 services:
   user:
@@ -6,7 +7,7 @@ services:
       context: ./user  # Path to the user Dockerfile
       dockerfile: Dockerfile
     volumes:
-      - "${PWD}/rendu:/rendu"  # Mount the rendu directory for shared access
+      - ./rendu:/rendu:rw  # Mount the rendu directory for shared access
     restart: always
 
   moulinette:
@@ -14,9 +15,8 @@ services:
       context: ./moulinette  # Path to the moulinette Dockerfile
       dockerfile: Dockerfile
     volumes:
-      - "${PWD}/rendu:/rendu"  # Mount the rendu directory for shared access
+      - ./rendu:/rendu:rw  # Mount the rendu directory for shared access
     restart: no 
     # profiles:
     #   - brb
     # TODO - run only moulinete on BIG RED BUTTON (BRB)
-
