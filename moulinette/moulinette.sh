@@ -9,7 +9,8 @@ set -e # exit on error
 CHALLENGE1=$1
 
 # Check for forbidden functions
-# TODO mcutura
+# TODO mcutura DONE
+grep -f poison $CHALLENGE1
 
 # Compile the codechallenge1.c file with our main.c 
 
