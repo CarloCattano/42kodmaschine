@@ -7,7 +7,7 @@ COMP := compose.yaml
 build:
 	$(DC) -f $(COMP) build
 up:
-	$(DC) -f $(COMP) up --build -d
+	$(DC) -f $(COMP) up --build -d 
 down:
 	$(DC) -f $(COMP) down
 start:

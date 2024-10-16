@@ -3,7 +3,6 @@
 # Moulinette tester for codechallenges
 # moulinette.sh codechallenge1.c expected result 
 
-set -e
 
 export CHALLENGE1=$1
 

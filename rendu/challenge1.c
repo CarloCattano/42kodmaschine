@@ -18,7 +18,7 @@
 
 void print_a()
 {
-	write(1, "a\n", 2); 
+	write(1, "2a\n", 2); 
 //	write(1, "*\n", 2);
 }
 
