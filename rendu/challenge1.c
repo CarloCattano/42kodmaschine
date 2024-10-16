@@ -10,7 +10,7 @@
 /*   Updated: 2024/10/16 15:05:05 by carlo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <unistd.h>
 
 // exploit 1 alowed
 // exploit 2 inline assembly allowed
@@ -18,9 +18,8 @@
 
 void print_a()
 {
-// 	write(1, "a\n", 2); 
+	write(1, "a\n", 2); 
 //	write(1, "*\n", 2);
-printf("%s\n", "a");
 }
 
 // do not submit your main.c

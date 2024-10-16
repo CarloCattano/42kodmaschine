@@ -5,6 +5,7 @@ WORKDIR /kod
 COPY main.c .
 COPY moulinette.sh .
 COPY poison .
+RUN mkdir -p /rendu
 
 # run moulinette with challenge1.c as argument
 CMD ["sh", "moulinette.sh", "/rendu/challenge1.c", "a$"]
