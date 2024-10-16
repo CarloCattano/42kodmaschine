@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.20
 RUN apk add --no-cache vim libc-dev git nano gcc python3
 
 COPY main.c .
