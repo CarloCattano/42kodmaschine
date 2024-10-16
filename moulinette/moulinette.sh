@@ -3,31 +3,33 @@
 # Moulinette tester for codechallenges
 # moulinette.sh codechallenge1.c expected result 
 
-
 export CHALLENGE1=$1
 
 # Check for forbidden functions
-# TODO mcutura DONE
 if [ ! -f poison ]; then
     echo "Error: poison file not found!"
     exit 1
 fi
 
-#supressed warnings for now
-grep -w -f poison $CHALLENGE1
+# Dont check comments ( `//   `/* ... */`)
+CLEANED_CODE=$(sed -E 's|//.*||; s|/\*[^*]*\*+([^/*][^*]*\*+)*/||g' $CHALLENGE1)
 
-# Compile the codechallenge1.c file with our main.c 
-gcc $CHALLENGE1 main.c -o out
+if echo "$CLEANED_CODE" | grep -w -f poison > /dev/null; then
+    printf "\033[0;31mForbidden function detected !!!! \033[0m\n"
+    exit 0
+fi
 
-#run the compiled file
+gcc -w $CHALLENGE1 main.c -o out
+
 TEST_RETURN=$(./out | cat -e)
 
-echo "Expected: $2"
 echo "Received: $TEST_RETURN"
 
 if [ "$TEST_RETURN" = "$2" ]; then
-    printf "\033[0;32mTest passed !!!! \033[0m"
+    printf "\033[0;32mTest passed !!!! \033[0m\n"
 else
-    printf "\033[0;31mTest failed !!!! \033[0m"
+    printf "\033[0;31mTest failed !!!! \033[0m\n"
 fi
+
 rm -fr out
+
