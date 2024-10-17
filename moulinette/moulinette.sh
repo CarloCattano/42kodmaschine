@@ -26,9 +26,9 @@ TEST_RETURN=$(./out | cat -e)
 echo "Received: $TEST_RETURN"
 
 if [ "$TEST_RETURN" = "$2" ]; then
-    printf "\033[0;32mTest passed !!!! \033[0m\n"
+    printf "\033[0;32m\n\tTest passed !!!! \033[0m\n"
 else
-    printf "\033[0;31mTest failed !!!! \033[0m\n"
+    printf "\033[0;31m\n\tTest failed !!!! \033[0m\n"
 fi
 
 rm -fr out

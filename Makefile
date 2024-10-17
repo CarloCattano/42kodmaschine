@@ -6,6 +6,8 @@ COMP := compose.yaml
 .PHONY: build up down start stop clean ps logs user moulinette help
 build:
 	$(DC) -f $(COMP) build
+re:
+	$(DC) -f $(COMP) up --build --force-recreate --remove-orphans -d
 up:
 	$(DC) -f $(COMP) up --build -d 
 down:

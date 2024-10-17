@@ -18,14 +18,14 @@
 
 void print_a()
 {
-	write(1, "a\n", 2); 
+ //   printf("%c\n", "a");
+	//write(1, "a\n", 2); 
 //	write(1, "*\n", 2);
 }
 
 // putc
 // printf
-    // prinf
-/*    printf */
+/* printf */
 /* putc('a'); */
 
 // do not submit your main.c
