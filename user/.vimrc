@@ -19,6 +19,7 @@ cnoremap wq! <C-u>echo "Command :wq! is disabled!"<CR>
 cnoremap x <C-u>echo "Command :x is disabled!"<CR>
 
 cnoremap ! <C-u>echo "Shell commands are disabled!"<CR>
+cnoremap term <C-u>echo "Terminal is disabled!"<CR>
 
 nnoremap ZZ :echo "ZZ exit is disabled!"<CR>
 nnoremap ZQ :echo "ZQ forced exit is disabled!"<CR>
