@@ -1,0 +1,3 @@
+Useful commands
+sudo dpkg-reconfigure console-setup
+sudo dpkg-reconfigure console-setup

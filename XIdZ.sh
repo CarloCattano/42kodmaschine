@@ -1,31 +1,15 @@
-# 42kodmaschine
+#!/usr/bin/bash
 
-```bash
-make up
-make user
-```
-boots into vim .
+set -euxo pipefail
 
-```bash
-make moulinette
-```
-runs the tests
+builtin -- cd -P -e -- "/mnt/media/media/Scripts"
 
+session="whatever"
+window="windowlol"
 
-## HARDWARE standalone coding challenge totem
+export SHELL="/usr/bin/bash"
+tmux new-session -s "${session}" -d || { echo "$(date): Tmux: Duplicate session: '$session'" >> /root/lol.log; exit 1; }
 
-A screen, a keyboard and a BIG red button ( submit -> push -> grademe )
-User gets booted to vim, inside an alpine container , running on a 42 minishell
-
-Simple excercises from 42,   N minutes timer to complete . Red light bulb for fail , something else for success
-
-```bash
-mkdir .ssh
-cd .ssh/
-nano authorized_keys
-```
-
-```tmux sane
 tmux rename-window -t "${session}" "${window}"
 tmux send-keys     -t "${session}:${window}" './thv_renamer.sh movie' ENTER
 tmux split-window  -t "${session}:${window}" -v -l '80%'
@@ -45,8 +29,4 @@ tmux rename-window -t "${session}" "automarrrrt"
 tmux send-keys     -t "${session}:automarrrrt" 'sudo --user="www-data" -- bash' ENTER
 tmux send-keys     -t "${session}:automarrrrt" '. /var/www/automarrrrt/env/bin/activate' ENTER
 tmux send-keys     -t "${session}:automarrrrt" './main.py' ENTER
-```
 
-```
-https://github.com/charmbracelet/bubbles
-```

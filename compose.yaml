@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./rendu:/rendu  # Mount the rendu directory for shared access
-    restart: always
+    restart: 'no'
 
   moulinette:
     build:
@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./rendu:/rendu  # Mount the rendu directory for shared access
-    restart: no 
+    restart: 'no' 
     # profiles:
     #   - brb
     # TODO - run only moulinete on BIG RED BUTTON (BRB)
