@@ -1,10 +1,12 @@
 # 42kodmaschine
 
+## initial boot to tty
+The pi boots and autologins to tty1, tty1 is detected and make user is triggered
+via .bash_profile
+
 ```bash
-make up
-make user
+make user # triggers the user environment with tmux and vim
 ```
-boots into vim .
 
 ```bash
 make moulinette
@@ -19,34 +21,17 @@ User gets booted to vim, inside an alpine container , running on a 42 minishell
 
 Simple excercises from 42,   N minutes timer to complete . Red light bulb for fail , something else for success
 
+
+## SSH access
+With an ethernet cable , the pi should be acessible with 
 ```bash
-mkdir .ssh
-cd .ssh/
-nano authorized_keys
+ssh exam@examshell.local
 ```
 
-```tmux sane
-tmux rename-window -t "${session}" "${window}"
-tmux send-keys     -t "${session}:${window}" './thv_renamer.sh movie' ENTER
-tmux split-window  -t "${session}:${window}" -v -l '80%'
-tmux send-keys     -t "${session}:${window}" './thv_renamer.sh tv' ENTER
-tmux split-window  -t "${session}:${window}" -v -l '75%'
-tmux send-keys     -t "${session}:${window}" './thv_renamer.sh ani' ENTER
-tmux split-window  -t "${session}:${window}" -v -l '67%'
-tmux send-keys     -t "${session}:${window}" './thv_renamer.sh docu' ENTER
-tmux split-window  -t "${session}:${window}" -v -l '50%'
-tmux send-keys     -t "${session}:${window}" './thv_renamer.sh docu-series' ENTER
-tmux split-window  -t "${session}:${window}" -h -l '50%'
-tmux send-keys     -t "${session}:${window}" './thv_renamer.sh horror' ENTER
-tmux select-pane   -t "${session}:${window}.{top}"
+## systemd button.service
+located at /etc/systemd/system/button.service
+listens for button press, prints button pressed
 
-tmux new-window    -t "${session}" -c '/var/www/automarrrrt/'
-tmux rename-window -t "${session}" "automarrrrt"
-tmux send-keys     -t "${session}:automarrrrt" 'sudo --user="www-data" -- bash' ENTER
-tmux send-keys     -t "${session}:automarrrrt" '. /var/www/automarrrrt/env/bin/activate' ENTER
-tmux send-keys     -t "${session}:automarrrrt" './main.py' ENTER
-```
+## TODO's | COULD DO's
+(https://github.com/users/CarloCattano/projects/1)[TODO's]
 
-```
-https://github.com/charmbracelet/bubbles
-```
