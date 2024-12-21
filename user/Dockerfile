@@ -1,6 +1,12 @@
 FROM alpine:3.20
-RUN apk add --no-cache vim 
+RUN apk add --no-cache vim tmux figlet
+ENV TERM=screen-256color
 COPY .vimrc /root/.vimrc
-WORKDIR rendu
-ENTRYPOINT ["vim", "challenge1.c"]
+COPY start.sh /root/start.sh
+COPY timer timer
+RUN chmod 0111 timer
+COPY orig.c orig.c
+COPY tmux.conf /root/.tmux.conf
 
+WORKDIR rendu
+ENTRYPOINT ["/bin/sh", "/root/start.sh"]
