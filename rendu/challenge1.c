@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   challenge1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <no@way.zip>                         +#+  +:+       +#+        */
+/*   By: jarvin <hackme@38c3.hamburg>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:04:48 by marvin             #+#    #+#             */
-/*   Updated: 2024/10/16 15:05:05 by carlo            ###   ########.fr       */
+/*   Created: 1970/01/01 00:42:01 by jarvin            #+#    #+#             */
+/*   Updated: 2024/10/16 15:05:05 by jarvin           ###   ######@38c3       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//////////////////////////////////////////////////////////////// Challenge 1 ///
+/// Write a function that takes a string and prints the first character 'a'  ///
+/// it encounters in it followrd by a new line. If the string does not       ///
+/// contain any 'a' characters, the function shall display new line.         ///
+///                                                                          ///
+/// Illegal instructions:                                                    ///
+/// - printf-family functions (e.g. dprintf, vprintf, printf, etc.)          ///
+/// - puts, fputs, putc, fputc, putchar                                      ///
+////////////////////////////////////////////////////////////////////////////////
+
 #include <unistd.h>
 
-// exploit 1 alowed
-// exploit 2 inline assembly allowed
-// system("python3", "-c", "print('a')");
-
-void print_a()
+void print_a(char *string)
 {
-    //printf("%c\n", "a");
-	//write(1, "a\n", 2); 
-    write(1, "*\n", 2);
+  // \/\/\/\/ ~~~ Your beautiful code goes here ~~~ \/\/\/\/ \\
 }
 
-// putc
-// printf
-/* printf */
-/* putc('a'); */
-
-// do not submit your main.c
-//int main() 
-//{
-//	print_a();
-//}
+// That's how we will call your function:
+// int main(void)
+// {
+// 	print_a("We will test with different strings =)");
+// }
