@@ -28,7 +28,7 @@ ps:	# Show me the procs
 logs:	# Show me results
 	$(DC) -f $(COMP) logs --tail=100 -f moulinette
 user:	# run user miniexamshell
-	$(DC) -f $(COMP) run user -e TERM=screen-256color sh
+	$(DC) -f $(COMP) run user
 	#$(DC) -f $(COMP) run user sh > /dev/tty1 2>&1
 
 kill:	# murder

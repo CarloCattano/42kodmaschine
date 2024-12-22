@@ -10,6 +10,7 @@ services:
     stdin_open: true
     volumes:
       - ./rendu:/rendu  # Mount the rendu directory for shared access
+      - ./result:/result
     restart: 'no'
 
   moulinette:
@@ -18,6 +19,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./rendu:/rendu  # Mount the rendu directory for shared access
+      - ./result:/result
     restart: 'no' 
     # profiles:
     #   - brb

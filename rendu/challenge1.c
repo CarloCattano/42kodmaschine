@@ -12,7 +12,7 @@
 
 //////////////////////////////////////////////////////////////// Challenge 1 ///
 /// Write a function that takes a string and prints the first character 'a'  ///
-/// it encounters in it followrd by a new line. If the string does not       ///
+/// it encounters in it followed by a new line. If the string does not       ///
 /// contain any 'a' characters, the function shall display new line.         ///
 ///                                                                          ///
 /// Illegal instructions:                                                    ///
@@ -24,7 +24,7 @@
 
 void print_a(char *string)
 {
-  // \/\/\/\/ ~~~ Your beautiful code goes here ~~~ \/\/\/\/ \\
+  // \/\/\/\/ ~~~ Your beautiful code goes here ~~~ \/\/\/\/ \\/
 }
 
 // That's how we will call your function:

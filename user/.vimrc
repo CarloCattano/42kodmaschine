@@ -1,8 +1,8 @@
 syntax on
 syntax enable
 set noswapfile
-set number
-set relativenumber
+"set number
+"set relativenumber
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -12,9 +12,11 @@ set smartindent
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-autocmd VimEnter * call SetupVimLayout()
-autocmd VimEnter * call timer_start(1000, 'UpdateTimer', {'repeat': -1})
-autocmd VimEnter * call SetupMessages()
+colorscheme blue
+
+" autocmd VimEnter * call SetupVimLayout()
+" autocmd VimEnter * call timer_start(1000, 'UpdateTimer', {'repeat': -1})
+" autocmd VimEnter * call SetupMessages()
 
 function! SetupVimLayout()
   vsplit
@@ -52,7 +54,7 @@ function! SelectRightBuffer()
 	wincmd l
 endfunction
 
-autocmd VimEnter * call SelectRightBuffer()
+" autocmd VimEnter * call SelectRightBuffer()
 
 for c in range(char2nr('a'), char2nr('z'))
 	execute 'nnoremap <C-w> . nr2char(c) :echo "Ctrl-w commands are disabled!"<CR>'

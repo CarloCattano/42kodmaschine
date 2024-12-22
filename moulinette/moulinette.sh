@@ -5,6 +5,7 @@
 
 export CHALLENGE1=$1
 
+RESULT=/result/1
 # Check for forbidden functions
 if [ ! -f poison ]; then
     echo "Error: poison file not found!"
@@ -15,7 +16,8 @@ fi
 CLEANED_CODE=$(sed -E 's|//.*||; s|/\*[^*]*\*+([^/*][^*]*\*+)*/||g' $CHALLENGE1)
 
 if echo "$CLEANED_CODE" | grep -w -f poison > /dev/null; then
-    printf "\033[0;31mForbidden function detected !!!! \033[0m\n"
+    # printf "\033[0;31mForbidden function detected !!!! \033[0m\n"
+    printf "[ILLEGAL]\n" >"$RESULT"
     exit 0
 fi
 
@@ -26,9 +28,11 @@ TEST_RETURN=$(./out | cat -e)
 echo "Received: $TEST_RETURN"
 
 if [ "$TEST_RETURN" = "$2" ]; then
-    printf "\033[0;32m\n\tTest passed !!!! \033[0m\n"
+    #printf "\033[0;32m\n\tTest passed !!!! \033[0m\n"
+    printf "[OK]\n" >"$RESULT"
 else
-    printf "\033[0;31m\n\tTest failed !!!! \033[0m\n"
+    #printf "\033[0;31m\n\tTest failed !!!! \033[0m\n"
+    printf "[KO]\n" >"$RESULT"
 fi
 
 rm -fr out
