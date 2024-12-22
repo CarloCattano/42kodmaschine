@@ -17,10 +17,11 @@
 ///                                                                          ///
 /// Illegal instructions:                                                    ///
 /// - printf-family functions (e.g. dprintf, vprintf, printf, etc.)          ///
-/// - puts, fputs, putc, fputc, putchar                                      ///
+/// - puts, fputs, putc, fputc, putchar, fwrite                              ///
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <unistd.h>
+#include <stdio.h>
 
 void print_a(char *string)
 {
