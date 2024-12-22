@@ -1,5 +1,10 @@
 printf
+vprintf
+sprintf
+dprintf
+fprintf
 putchar
 puts
 fputs
 putc
+fwrite
