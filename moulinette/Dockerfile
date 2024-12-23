@@ -1,5 +1,5 @@
 FROM alpine:3.20
-RUN apk add --no-cache vim libc-dev gcc python3
+RUN apk add --no-cache vim libc-dev gcc python3 bash
 
 WORKDIR /kod
 
@@ -24,4 +24,7 @@ COPY moulinette.sh .
 
 RUN mkdir -p /rendu
 
-CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
+ENTRYPOINT ["tail", "-f"]
+#CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
+
+
