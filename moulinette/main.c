@@ -1,9 +1,8 @@
 #include <unistd.h>
-#include <stdlib.h>
 
-void print_a(void);
+void print_a(char *string);
 
 int main(void) {
-    print_a();
+    print_a("a");
     return (0);
 }

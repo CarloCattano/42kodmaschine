@@ -5,9 +5,9 @@ WORKDIR /kod
 COPY main.c .
 COPY moulinette.sh .
 COPY poison .
+COPY c1out_compare .
 RUN mkdir -p /rendu
 
-# run moulinette with challenge1.c as argument
 ENTRYPOINT ["tail", "-f"]
-CMD ["sh", "moulinette.sh", "/rendu/challenge1.c", "a$"]
+CMD ["sh", "moulinette.sh", "1", "/rendu/challenge1.c", "main.c", "c1out_compare"]
 
