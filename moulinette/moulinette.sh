@@ -36,11 +36,11 @@ fi
 
 echo "[WIP]" > /result/$LEVEL
 
-gcc -w $MAINF $SOURCEF -o out.$LEVEL 2>&1 > /dev/null
+gcc -w -O0 $MAINF $SOURCEF -o out.$LEVEL 2>&1 > /dev/null
 
 echo "Bazooka"
 
-nm out.$LEVEL | grep -f poison > /dev/null
+nm out.$LEVEL | grep -f poison
 
 if [ $? -eq 0 ]; then
     printf "[ILLEGAL]\n" > /result/$LEVEL

@@ -2,12 +2,29 @@ FROM alpine:3.20
 RUN apk add --no-cache vim libc-dev gcc python3 bash
 
 WORKDIR /kod
-COPY main.c .
-COPY moulinette.sh .
+
+# Tests
+COPY c1_tests.c .
+COPY c2_tests.c .
+COPY c3_tests.c .
+
+# Expected outputs
+COPY c1_expected.out .
+COPY c2_expected.out .
+COPY c3_expected.out .
+
+# Solutions
+COPY solutions/c1.c c1_sol.c
+COPY solutions/fizzbuzz.c c2_sol.c
+COPY solutions/rotn.c c3_sol.c
+
+# Moulinette
 COPY poison .
-COPY c1out_compare .
+COPY moulinette.sh .
+
 RUN mkdir -p /rendu
 
 ENTRYPOINT ["tail", "-f"]
-CMD ["sh", "moulinette.sh", "1", "/rendu/challenge1.c", "main.c", "c1out_compare"]
+CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
+
 

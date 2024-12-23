@@ -8,3 +8,4 @@ puts
 fputs
 putc
 fwrite
+strlen
