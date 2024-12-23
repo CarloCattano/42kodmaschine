@@ -11,6 +11,7 @@ services:
     volumes:
       - ./rendu:/rendu
       - ./result:/result
+      - ./scoreboard:/scoreboard
     restart: 'always'
 
   moulinette:

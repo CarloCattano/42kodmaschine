@@ -1,5 +1,5 @@
 FROM alpine:3.20
-RUN apk add --no-cache vim libc-dev gcc python3
+RUN apk add --no-cache vim libc-dev gcc python3 bash
 
 WORKDIR /kod
 COPY main.c .

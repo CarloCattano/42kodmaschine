@@ -1,0 +1,29 @@
+#!/bin/sh
+
+### SCOREBOARD ###
+
+# Create a scoreboard file if it doesn't exist
+if [ ! -f /scoreboard/score.board ]; then
+    touch /scoreboard/score.board
+fi
+
+# Prompt user from tmux to enter their name
+#tmux new-session -d -s scoreboard 'echo "Enter your name:"; read name; echo $name > /scoreboard/new_entry' -A
+tmux popup -t kodmaschine:0 -h 40% -w 40% -x 10% -y 10% 'figlet Exam challenger && echo "Login name: " && read name && echo $name > /scoreboard/new_entry'
+
+# Wait for user to enter their name
+while [ ! -s /scoreboard/new_entry ]; do
+    sleep 0.5
+done
+
+# Read the user's name
+name=$(cat /scoreboard/new_entry)
+
+# Get current user time
+time=$(cat /scoreboard/current_user_time)
+
+# Add user to scoreboard
+echo "$time $name" >> /scoreboard/score.board
+
+# Sort scoreboard
+sort -k2 -n /scoreboard/score.board | tee /scoreboard/score.board

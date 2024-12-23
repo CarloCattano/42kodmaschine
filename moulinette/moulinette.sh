@@ -1,17 +1,18 @@
 #!/bin/sh
 
-USAGE="Usage: moulinette.sh <level> <source file> <main source file> \
-<expected result (file)>"
+USAGE="Usage: moulinette.sh <level> <source file> <main source file> <expected result>"
 
 if [ "$#" -ne 4 ]; then
     echo "$USAGE"
-    exit 1
+    exit $#
 fi
 
 LEVEL=$1
 SOURCEF=$2
 MAINF=$3
 EXPECTEDF=$4
+
+echo "Good debugging"
 
 if [ ! -f $SOURCEF ]; then
     echo "Error: source file not found!"
@@ -37,6 +38,8 @@ echo "[WIP]" > /result/$LEVEL
 
 gcc -w $MAINF $SOURCEF -o out.$LEVEL 2>&1 > /dev/null
 
+echo "Bazooka"
+
 nm out.$LEVEL | grep -f poison > /dev/null
 
 if [ $? -eq 0 ]; then
@@ -44,9 +47,11 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
-TEST_OUTPUT=$(./out.$LEVEL | cat -e)
+TEST_OUTPUT=`./out.$LEVEL | cat -e`
 
-if [ "$TEST_OUTPUT" = "$(cat $EXPECTEDF | cat -e)" ]; then
+echo "quantum debugging"
+
+if [ "$TEST_OUTPUT" = `cat $EXPECTEDF | cat -e` ]; then
     printf "[OK]\n" > /result/$LEVEL
 else
     printf "[KO]\n" > /result/$LEVEL

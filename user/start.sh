@@ -7,7 +7,7 @@ window="Exam-O-Tron"
 
 title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
 
-scoreboard="cat /result/scoreboard | /tte spotlights"
+scoreboard="watch -t 'cat /result/scoreboard /scoreboard/score.board | /tte spotlights'"
 
 # TODO: setup progression and run for each challenge individually
 examprompt="sleep 0.1; tmux popup -t ${session} -h 70% -w 60% -x 2% -y 28% figlet -t -c 'PRESS BUTTON TO START'"
@@ -21,7 +21,7 @@ timer_cmd="sleep 0.1; /timer 5 42; tmux set -g status-style 'bg=red'"
 
 # Start Vim and Tmux with the specified file
 start_vim_and_tmux() {
-    tmux new-session -s "${session}" -d -x - -y -
+    tmux new-session -A -s "${session}" -d -x - -y -
     tmux rename-window -t "${session}" "${window}"
     tmux send "sleep 0.42" C-m
     tmux splitw -v -l '75%'
@@ -41,7 +41,6 @@ start_vim_and_tmux() {
     sleep 0.2
     tmux select-pane -t 3
     tmux send-keys -t "${session}" "${challenge1}" C-m
-    tmux attach -t "${session}"
 }
 
 # TODO: Fix if sent to background

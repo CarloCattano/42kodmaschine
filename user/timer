@@ -12,6 +12,7 @@ print_as_minutes () {
 	_total_sec="${1}"
 	min="$((_total_sec / 60))"
 	sec="$((_total_sec % 60))"
+	echo "$min $sec" > /scoreboard/current_user_time
 	clear -x
 	n_lines="$(($(stty size | cut -d " " -f 1)))"
 	n_cols="$(($(stty size | cut -d " " -f 2)))"
