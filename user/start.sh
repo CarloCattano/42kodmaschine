@@ -5,31 +5,43 @@
 session="kodmaschine"
 window="Exam-O-Tron"
 
-subjectpdf="figlet Instructions"
-scoreboard="figlet Scoreboard"
-challenge1="sleep 0.2; vim challenge1.c"
-timer_cmd="sleep 1; /timer 5 42; tmux set -g status-style 'bg=red'"
-title="figlet Exam-O-Tron"
-prep="unset PS1; stty -echo; clear;"
-status="watch -n 1 'cat /result/1 | figlet -t -c'"
-# Function to start Vim and Tmux with the specified file
+title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
+
+scoreboard="cat /result/scoreboard | /tte spotlights"
+
+# TODO: setup progression and run for each challenge individually
+examprompt="sleep 0.1; tmux popup -t ${session} -h 70% -w 60% -x 2% -y 28% figlet -t -c 'PRESS BUTTON TO START'"
+subjectpdf="cat en.subject1.pdf | /tte print"
+challenge1="sleep 0.1; vim challenge1.c +16"
+
+# TODO: Setup a timer instead of countdown
+timer_cmd="sleep 0.1; /timer 5 42; tmux set -g status-style 'bg=red'"
+
+#status="watch -t -n 1 'cat /result/1 | figlet -t -c | /tte matrix'"
+
+# Start Vim and Tmux with the specified file
 start_vim_and_tmux() {
-    tmux new-session -s "${session}" -d -A;
-    tmux rename-window -t "${session}" "${window}";
-    tmux send "sleep 0.42" C-m;
-    tmux splitw -v -l '85%';
-    tmux send-keys -t "${session}" "${subjectpdf}" C-m;
-    tmux splitw -h -l '75%';
-    tmux splitw -h -l '25%';
-    tmux send-keys -t "${session}" "${scoreboard}" C-m;
-    tmux select-pane -t 0;
-    tmux send-keys -t "${session}" "${timer_cmd}" C-m;
-    tmux splitw -h -l '75%';
-    tmux send-keys -t "${session}" "${title}" C-m;
-    tmux splitw -h -l '25%';
-    tmux send-keys -t "${session}" "${prep}" C-m "${status}" C-m;
-    tmux select-pane -t 4;
-    tmux send-keys -t "${session}" "${challenge1}" C-m;
+    tmux new-session -s "${session}" -d -x - -y -
+    tmux rename-window -t "${session}" "${window}"
+    tmux send "sleep 0.42" C-m
+    tmux splitw -v -l '75%'
+    tmux splitw -h -l '70%'
+    tmux splitw -h -l '50%'
+    tmux send-keys -t "${session}" "${scoreboard}" C-m
+    tmux select-pane -t 0
+    tmux splitw -h -l '80%'
+    tmux send-keys -t "${session}" "${title}" C-m
+    tmux select-pane -t 0
+    tmux send-keys -t "${session}" "${timer_cmd}" C-m
+    tmux select-pane -t 2
+    tmux select-pane -t 2
+    tmux send-keys -t "${session}" "${examprompt}" C-m
+    sleep 0.2
+    tmux send-keys -t "${session}" "${subjectpdf}" C-m
+    sleep 0.2
+    tmux select-pane -t 3
+    tmux send-keys -t "${session}" "${challenge1}" C-m
+    tmux attach -t "${session}"
 }
 
 # TODO: Fix if sent to background

@@ -8,6 +8,6 @@ COPY poison .
 RUN mkdir -p /rendu
 
 # run moulinette with challenge1.c as argument
+ENTRYPOINT ["tail", "-f"]
 CMD ["sh", "moulinette.sh", "/rendu/challenge1.c", "a$"]
 
-#ENTRYPOINT ["sh", "/kod/moulinette.sh", "/rendu/challenge1.c", "a$"]
