@@ -25,6 +25,6 @@ COPY moulinette.sh .
 RUN mkdir -p /rendu
 
 ENTRYPOINT ["tail", "-f"]
-CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
+#CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
 
 

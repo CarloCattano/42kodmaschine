@@ -38,7 +38,7 @@ restart: kill down up	# A New Hope
 	echo "$(magb)Restarted $(NAME)$(clr)"
 moulinette:	# grademe
 #	$(DC) -f $(COMP) run --rm moulinette
-	-$(DC) -f $(COMP) exec moulinette /kod/moulinette.sh 1 /rendu/challenge1.c /kod/main.c /kod/c1out_compare
+	-$(DC) -f $(COMP) exec moulinette /kod/moulinette.sh 1 /rendu/challenge1.c /kod/c1_tests.c /kod/c1_expected.out
 	-$(DC) -f $(COMP) exec user sh -c "tmux popup -t kodmaschine:0 -h 50% -w 60% -x 20% -y 40% 'figlet Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 200 && echo Results ready! Press ESC to continue...'"
 	-$(DC) -f $(COMP) exec user /start_score
 help:	# plshelp

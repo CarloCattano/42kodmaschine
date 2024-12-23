@@ -3,7 +3,7 @@
 ### SCOREBOARD ###
 
 # Create a scoreboard file if it doesn't exist
-if [ ! -f /scoreboard/score.board ]; then
+if [ ! -s /scoreboard/score.board ]; then
     touch /scoreboard/score.board
 fi
 
