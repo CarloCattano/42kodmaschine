@@ -22,6 +22,7 @@ void rot_n(const char *string, int n) {
     write(1, "\n", 1);
 }
 
+/*/
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Usage: %s <string> <n>\n", argv[0]);
@@ -32,3 +33,4 @@ int main(int argc, char *argv[]) {
     rot_n(input_string, n);
     return 0;
 }
+*/
