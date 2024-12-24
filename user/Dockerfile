@@ -10,6 +10,8 @@ COPY --chmod=111 tte tte
 COPY fraktur.flf /usr/share/figlet/fonts/fraktur.flf
 COPY title /title
 COPY --chmod=111 scoreboard /start_score
+COPY --chmod=111 dwatchcat /root/watchcat
+COPY --chmod=111 progress.sh /root/progress.sh
 
 COPY start.sh /root/start.sh
 
