@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
 void print_a(char *string)
 {
-  // \/\/\/\/ ~~~ Your beautiful code goes here ~~~ \/\/\/\/ \\/
+  write(1, "a\n", 2);
 }
 
 // That's how we will call your function:

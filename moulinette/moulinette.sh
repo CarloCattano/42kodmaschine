@@ -15,7 +15,7 @@ EXPECTEDF=$4
 echo "Good debugging"
 
 if [ ! -f $SOURCEF ]; then
-    echo "Error: source file not found!"
+    echo "Error: source file ('$SOURCEF') not found!"
     exit 1
 fi
 
@@ -48,13 +48,16 @@ if [ $? -eq 0 ]; then
 fi
 
 TEST_OUTPUT=`./out.$LEVEL | cat -e`
+./out.$LEVEL > /tmp/out.$LEVEL.stdout
 
 echo "quantum debugging"
 
-if [ "$TEST_OUTPUT" = `cat $EXPECTEDF | cat -e` ]; then
+# if [ "$TEST_OUTPUT" = `cat -e $EXPECTEDF` ]; then # what
+if diff "/tmp/out.$LEVEL.stdout" "$EXPECTEDF"; then
     printf "[OK]\n" > /result/$LEVEL
 else
     printf "[KO]\n" > /result/$LEVEL
 fi
 
 rm -f out.$LEVEL compile_log.$LEVEL
+rm -f /tmp/out.$LEVEL.stdout

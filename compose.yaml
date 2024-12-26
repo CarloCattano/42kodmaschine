@@ -9,10 +9,10 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ./rendu:/rendu
+      - ./rendu:/rendu:rw
       - ./result:/result
       - ./scoreboard:/scoreboard
-    restart: 'always'
+    restart: 'unless-stopped'
 
   moulinette:
     build:

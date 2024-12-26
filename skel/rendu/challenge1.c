@@ -10,16 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//////////////////////////////////////////////////////////////// Challenge 1 ///
-/// Write a function that takes a string and prints the first character 'a'  ///
-/// it encounters in it followed by a new line. If the string does not       ///
-/// contain any 'a' characters, the function shall display new line.         ///
-///                                                                          ///
-/// Illegal instructions:                                                    ///
-/// - printf-family functions (e.g. dprintf, vprintf, printf, etc.)          ///
-/// - puts, fputs, putc, fputc, putchar                                      ///
-////////////////////////////////////////////////////////////////////////////////
-
 #include <unistd.h>
 
 void print_a(char *string)

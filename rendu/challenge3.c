@@ -10,17 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//////////////////////////////////////////////////////////////// Challenge 3 ///
-/// Write a function that takes a string and displays it, replacing each     ///
-/// letter with the one that goes `n` letters after it in alphabetical       ///
-/// order.                                                                   ///
-///                                                                          ///
-/// Illegal instructions:                                                    ///
-/// - printf-family functions (e.g. dprintf, vprintf, printf, etc.)          ///
-/// - puts, fputs, putc, fputc, putchar                                      ///
-/// - isalpha, isupper, islower, isdigit, strlen                             ///
-////////////////////////////////////////////////////////////////////////////////
-
 void  rot_n(const char *string, int n)
 {
   // Veni, scripsi, computavi — I came, I wrote, I computed.

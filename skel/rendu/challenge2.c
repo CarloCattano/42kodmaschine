@@ -10,21 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//////////////////////////////////////////////////////////////// Challenge 2 ///
-/// Write a function that takes an integer n and prints the numbers from 1   ///
-/// to n. For each number:                                                   ///
-/// - If the number is prime, print "Fizz" followed by a comma and space.    ///
-/// - If the number is not prime, print "Buzz" followed by a comma and space.///
-///                                                                          ///
-/// Example:                                                                 ///
-/// - fizzbuzz(6) => Buzz, Fizz, Fizz, Buzz, Fizz, Buzz                      ///
-///                     1,    2,    3,    4,    5,    6                      ///
-///                                                                          ///
-/// Illegal instructions:                                                    ///
-/// - printf-family functions (e.g. dprintf, vprintf, printf, etc.)          ///
-/// - puts, fputs, putc, fputc, putchar                                      ///
-////////////////////////////////////////////////////////////////////////////////
-
 #include <unistd.h>
 
 void fizzbuzz(int n)

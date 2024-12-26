@@ -1,0 +1,41 @@
+
+
+
+/////////////////////////////////////////////
+//                                         //
+//    INSTRUCTIONS    (read carefully)     //
+//                                         //
+/////////////////////////////////////////////
+//    Challenge 2                          //
+/////////////////////////////////////////////
+//                                         //
+// Write a function that takes an          //
+// integer n and prints the numbers        //
+// from 1 to n. for each number:           //
+//  - if the number is prime, print "Fizz" //
+//    followed by a newline.               //
+//  - if the number is not prime, print    //
+//    "Buzz" followed by a newline.        //
+//                                         //
+// Example:                                //
+//  - fizzbuzz(6) =>                       //
+//                   Buzz                  //
+//                   Fizz                  //
+//                   Fizz                  //
+//                   Buzz                  //
+//                   Fizz                  //
+//                   Buzz                  //
+//                                         //
+//                                         //
+/////////////////////////////////////////////
+//                                         //
+//     ILLEGAL INSTRUCTIONS:               //
+/////////////////////////////////////////////
+//                                         //
+//  - printf-family functions              //
+//  (eg. dprintf, vprintf, printf, etc.)   //
+//  - puts, fputs, putc, fputc, putchar    //
+//                                         //
+/////////////////////////////////////////////
+
+

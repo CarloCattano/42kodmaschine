@@ -1,0 +1,32 @@
+
+
+
+/////////////////////////////////////////////
+//                                         //
+//    INSTRUCTIONS    (read carefully)     //
+//                                         //
+/////////////////////////////////////////////
+//    Challenge 3                          //
+/////////////////////////////////////////////
+//                                         //
+// Write a function that takes a string    //
+// and displays it, replacing each         //
+// letter with the one that goes `n`       //
+// letters after it in alphabetical        //
+// order.                                  //
+//                                         //
+/////////////////////////////////////////////
+//                                         //
+//     ILLEGAL INSTRUCTIONS:               //
+/////////////////////////////////////////////
+//                                         //
+//  - printf-family functions              //
+//  (eg. dprintf, vprintf, printf, etc.)   //
+//  - puts, fputs, putc, fputc, putchar    //
+//  - isalpha, isupper, islower,           //
+//    isdigit, strlen                      //
+//                                         //
+/////////////////////////////////////////////
+
+
+

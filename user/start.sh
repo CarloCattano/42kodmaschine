@@ -1,21 +1,20 @@
 #!/bin/sh
 
-#cp /orig.c /rendu/challenge1.c
-
 session="kodmaschine"
 window="Exam-O-Tron"
 
 title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
 
-scoreboard="watch -t 'cat /result/scoreboard /scoreboard/score.board | /tte spotlights'"
+# scoreboard="watch -t 'cat /result/scoreboard /scoreboard/score.board | /tte spotlights'"
+scoreboard="clear; cat /result/scoreboard /scoreboard/score.board | /tte spotlights ; /root/watchcat /scoreboard/score.board 'clear; cat /result/scoreboard /scoreboard/score.board | /tte spotlights' 1"
 
-# TODO: setup progression and run for each challenge individually
-examprompt="sleep 0.1; tmux popup -t ${session} -h 70% -w 60% -x 2% -y 28% figlet -t -c 'PRESS BUTTON TO START'"
-subjectpdf="cat en.subject1.pdf | /tte print"
+examprompt="sleep 0.1; tmux popup -t ${session}:0 -h 70% -w 60% -x 20% -y 15% figlet -t -c 'PRESS ESC TO START'; exit"
+subjectpdf="clear; cat en.subject1.pdf | /tte print"
 challenge1="sleep 0.1; vim challenge1.c +16"
 
-# TODO: Setup a timer instead of countdown
 timer_cmd="sleep 0.1; /timer 5 42; tmux set -g status-style 'bg=red'"
+
+prep="unset PS1; stty -echo; clear"
 
 #status="watch -t -n 1 'cat /result/1 | figlet -t -c | /tte matrix'"
 
@@ -27,24 +26,24 @@ start_vim_and_tmux() {
     tmux splitw -v -l '75%'
     tmux splitw -h -l '70%'
     tmux splitw -h -l '50%'
-    tmux send-keys -t "${session}" "${scoreboard}" C-m
+    tmux send-keys -t "${session}" "${prep}; ${scoreboard}" C-m
     tmux select-pane -t 0
     tmux splitw -h -l '80%'
-    tmux send-keys -t "${session}" "${title}" C-m
+    tmux send-keys -t "${session}" "${prep}; ${title}" C-m
     tmux select-pane -t 0
-    tmux send-keys -t "${session}" "${timer_cmd}" C-m
+    tmux send-keys -t "${session}" "${prep}; ${timer_cmd}" C-m
+    tmux send-keys -t "${session}" "${prep}; ${examprompt}" C-m
     tmux select-pane -t 2
-    tmux select-pane -t 2
-    tmux send-keys -t "${session}" "${examprompt}" C-m
-    sleep 0.2
-    tmux send-keys -t "${session}" "${subjectpdf}" C-m
-    sleep 0.2
+    tmux send-keys -t "${session}" "${prep}; ${subjectpdf}" C-m
     tmux select-pane -t 3
-    tmux send-keys -t "${session}" "${challenge1}" C-m
+    tmux send-keys -t "${session}" "${prep}; ${challenge1}" C-m
 }
 
 # TODO: Fix if sent to background
 # Main loop to restart Vim and Tmux if they exit
+stty -echo
+export PS1=''
+/start_score
 while true; do
     start_vim_and_tmux
     if [[ $? -ne 0 ]]; then

@@ -24,11 +24,7 @@ try:
         input_state = GPIO.input(16)
         if not input_state and not button_pressed:
             print("Button Pressed", flush=True)
-            if path.exists(session_file):
-                run_moulinette()
-            else:
-                #start_examshell()
-                run_moulinette()
+            run_moulinette()
             button_pressed = True
         elif input_state and button_pressed:
             button_pressed = False

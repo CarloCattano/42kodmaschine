@@ -2,6 +2,7 @@ NAME := 42kodmaschine
 
 DC := docker compose
 COMP := compose.yaml
+RM := rm
 
 cyn := \033[36m
 magb := \033[1;35m
@@ -24,11 +25,18 @@ stop:	# stop
 clean: stop	# prune AF
 	@printf "$(cyn)This will fully prune the docker system!\n$(magb)Are you sure? $(cyn)(Y/n)$(clr) "
 	@read CONFIRM ; if [[ $$CONFIRM == 'Y' ]]; then docker system prune -af ; fi
+	-$(RM) -f ./result/1
+	-$(RM) -f ./result/2
+	-$(RM) -f ./result/3
+	-$(RM) -f ./result/.session
 ps:	# Show me the procs
 	$(DC) -f $(COMP) ps
 logs:	# Show me results
 	$(DC) -f $(COMP) logs --tail=100 -f moulinette
 user:	# run user
+	$(RM) -fr rendu/* result/*
+	cp skel/rendu/* rendu/
+	cp skel/result/scoreboard result
 	$(DC) -f $(COMP) run --rm user
 examshell:	# start exam
 	$(DC) -f $(COMP) exec user /root/start.sh
@@ -37,9 +45,8 @@ kill:	# murder
 restart: kill down up	# A New Hope
 	echo "$(magb)Restarted $(NAME)$(clr)"
 moulinette:	# grademe
-#	$(DC) -f $(COMP) run --rm moulinette
-	-$(DC) -f $(COMP) exec moulinette /kod/moulinette.sh 1 /rendu/challenge1.c /kod/main.c /kod/c1out_compare
-	-$(DC) -f $(COMP) exec user sh -c "tmux popup -t kodmaschine:0 -h 50% -w 60% -x 20% -y 40% 'figlet Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 200 && echo Results ready! Press ESC to continue...'"
+	-$(DC) -f $(COMP) exec moulinette $(shell sh ./moulinette/progress.sh)
+	-$(DC) -f $(COMP) exec user sh -c "tmux popup -t kodmaschine:0 -h 50% -w 60% -x 20% -y 40% 'figlet -t -c Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 200 && echo Results ready! Press ESC to continue...'"
 	-$(DC) -f $(COMP) exec user /start_score
 help:	# plshelp
 	@awk 'BEGIN { \

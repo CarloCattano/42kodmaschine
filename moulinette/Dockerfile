@@ -21,10 +21,9 @@ COPY solutions/rotn.c c3_sol.c
 # Moulinette
 COPY poison .
 COPY moulinette.sh .
+# COPY progress.sh . # NO DONT
 
 RUN mkdir -p /rendu
 
 ENTRYPOINT ["tail", "-f"]
-CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
-
-
+#CMD ["sh", "moulinette.sh", "1", "c1_sol.c", "c1_tests.c", "c1_expected.out"]
