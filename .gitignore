@@ -6,3 +6,5 @@ result/2
 result/3
 scoreboard/score.board
 scoreboard/current_user_time
+!scoreboard/.gitkeep
+scoreboard/*
