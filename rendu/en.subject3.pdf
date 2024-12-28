@@ -6,14 +6,16 @@
 //    INSTRUCTIONS    (read carefully)     //
 //                                         //
 /////////////////////////////////////////////
-//    Challenge 3                          //
+//    Challenge 3 - rot N                  //
 /////////////////////////////////////////////
 //                                         //
-// Write a function that takes a string    //
-// and displays it, replacing each         //
-// letter with the one that goes `n`       //
-// letters after it in alphabetical        //
-// order.                                  //
+//  Write a function that takes a string   //
+//  and displays it, replacing each        //
+//  letter with the one that goes `n`      //
+//  letters after it in alphabetical       //
+//  order.                                 //
+//  Print the encoded string followed      //
+//  by a new line.                         //
 //                                         //
 /////////////////////////////////////////////
 //                                         //
@@ -23,8 +25,12 @@
 //  - printf-family functions              //
 //  (eg. dprintf, vprintf, printf, etc.)   //
 //  - puts, fputs, putc, fputc, putchar    //
-//  - isalpha, isupper, islower,           //
-//    isdigit, strlen                      //
+//                                         //
+/////////////////////////////////////////////
+//                                         //
+//  When your code is ready,               //
+//  push the button to your right          //
+//  to submit it for grading!              //
 //                                         //
 /////////////////////////////////////////////
 

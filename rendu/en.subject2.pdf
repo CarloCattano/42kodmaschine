@@ -6,16 +6,17 @@
 //    INSTRUCTIONS    (read carefully)     //
 //                                         //
 /////////////////////////////////////////////
-//    Challenge 2                          //
+//    Challenge 2 - Primal Fizzbuzz        //
 /////////////////////////////////////////////
 //                                         //
 // Write a function that takes an          //
 // integer n and prints the numbers        //
-// from 1 to n. for each number:           //
-//  - if the number is prime, print "Fizz" //
-//    followed by a newline.               //
-//  - if the number is not prime, print    //
-//    "Buzz" followed by a newline.        //
+// from 1 to n (included).                 //
+// Instead of each number:                 //
+//  - if the number is prime,              //
+//    print "Fizz" followed by a newline.  //
+//  - if the number is not prime,          //
+//    print "Buzz" followed by a newline.  //
 //                                         //
 // Example:                                //
 //  - fizzbuzz(6) =>                       //
@@ -35,6 +36,12 @@
 //  - printf-family functions              //
 //  (eg. dprintf, vprintf, printf, etc.)   //
 //  - puts, fputs, putc, fputc, putchar    //
+//                                         //
+/////////////////////////////////////////////
+//                                         //
+//  When your code is ready,               //
+//  push the button to your right          //
+//  to submit it for grading!              //
 //                                         //
 /////////////////////////////////////////////
 

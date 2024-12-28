@@ -1,2 +1,8 @@
 *.flf
 tte
+a.out
+result/1
+result/2
+result/3
+scoreboard/score.board
+scoreboard/current_user_time

@@ -3,7 +3,7 @@
 //////////////////////////////////////////
 //    INSTRUCTIONS    (read carefully)  //
 //////////////////////////////////////////
-//    Challenge 1                       //
+//    Challenge 1 - AAA                 //
 //////////////////////////////////////////
 //                                      //
 //  Write a function that takes a       //
@@ -12,7 +12,11 @@
 //  followed by a new line. If the      //
 //  string does not contain any 'a'     //
 //  characters, the function shall      //
-//  display new line.                   //
+//  display an 'a' with a new line.     //
+//  Finally, it the string is empty     //
+//  or there is no string, the function //
+//  should write a character 'a' and    //
+//  a newline character after it.       //
 //                                      //
 //////////////////////////////////////////
 //                                      //
@@ -22,6 +26,13 @@
 //  - printf-family functions           //
 //  (eg. dprintf, vprintf, printf, etc.)//
 //  - puts, fputs, putc, fputc, putchar //
+//                                      //
+//////////////////////////////////////////
+//                                      //
+//  When your code is ready, save the   //
+//  working buffer and press the big    //
+//  button to your right to submit      //
+//  the code for the grading procedure. //
 //                                      //
 //////////////////////////////////////////
 

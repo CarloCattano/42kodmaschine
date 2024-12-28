@@ -29,6 +29,8 @@ try:
         elif input_state and button_pressed:
             button_pressed = False
         sleep(0.05)
+        #sleep(0.5)
+        #print('still running lol')
 
 except KeyboardInterrupt:
     print("Exiting script", flush=True)

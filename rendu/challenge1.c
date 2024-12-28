@@ -14,7 +14,7 @@
 
 void print_a(char *string)
 {
-  write(1, "a\n", 2);
+  // \/\/\/\/ ~~~ Your beautiful code goes here ~~~ \/\/\/\/ \\/
 }
 
 // That's how we will call your function:

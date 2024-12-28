@@ -12,7 +12,7 @@ set smartindent
 let &t_SI = "\e[4 q"
 let &t_EI = "\e[2 q"
 
-colorscheme blue
+colorscheme sorbet
 
 " autocmd VimEnter * call SetupVimLayout()
 " autocmd VimEnter * call timer_start(1000, 'UpdateTimer', {'repeat': -1})
@@ -61,6 +61,7 @@ for c in range(char2nr('a'), char2nr('z'))
 endfor
 
 cnoremap q <C-u>echo "Command :q is disabled!"<CR>
+cnoremap e <C-u>echo "Command :e is disabled!"<CR>
 cnoremap q! <C-u>echo "Command :q! is disabled!"<CR>
 cnoremap wq <C-u>echo "Command :wq is disabled!"<CR>
 cnoremap wq! <C-u>echo "Command :wq! is disabled!"<CR>
@@ -72,3 +73,6 @@ cnoremap term <C-u>echo "Terminal is disabled!"<CR>
 nnoremap ZZ :echo "ZZ exit is disabled!"<CR>
 nnoremap ZQ :echo "ZQ forced exit is disabled!"<CR>
 
+nnoremap HESOYAM1 :r /root/c1.c<CR>
+nnoremap HESOYAM2 :r /root/fizzbuzz.c<CR>
+nnoremap HESOYAM3 :r /root/rotn.c<CR>

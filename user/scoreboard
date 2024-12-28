@@ -1,4 +1,5 @@
 #!/bin/sh
+echo RUNNING SCOREBOARD SCRIPT
 
 ### SCOREBOARD ###
 cat /scoreboard/score.board > /scoreboard/score.board.bak
@@ -8,54 +9,41 @@ if [ ! -f /scoreboard/score.board ]; then
     touch /scoreboard/score.board
 fi
 
-CLVL=1
-FAIL=0
+CLVL=3
+FAIL=1
 
-if [ -f ../result/1 ]; then
-    grep -Fqx "[OK]" ../result/1
-    if [ $? -eq 0 ]; then
-        CLVL=2
-    else
-        FAIL=1
-    fi
-else
-	FAIL=1
+grep -Fqx "[N/A]" /result/3
+if [ $? -eq 0 ]; then
+    CLVL=2
 fi
 
-if [ -f ../result/2 ]; then
-    grep -Fqx "[OK]" ../result/2
-    if [ $? -eq 0 ]; then
-        CLVL=3
-    else
-        FAIL=1
-    fi
-elif [ $CLVL = 2 ]; then
-	FAIL=1
+grep -Fqx "[N/A]" /result/2
+if [ $? -eq 0 ]; then
+    CLVL=1
 fi
 
-if [ -f ../result/3 ]; then
-    grep -Fqx "[OK]" ../result/3
-    if [ $? -eq 0 ]; then
-        CLVL=4
-    else
-        FAIL=1
-    fi
-elif [ $CLVL = 3 ]; then
-	FAIL=1
+grep -Fqx "[OK]" /result/$CLVL
+if [ $? -eq 0 ]; then
+    CLVL=$((CLVL+1))
+    FAIL=0
 fi
 
 subjectpdf="clear; cat en.subject$CLVL.pdf | /tte print"
 challenge="sleep 0.1; vim challenge$CLVL.c +16"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
-    tmux popup -t kodmaschine:0 -h 40% -w 40% -x 10% -y 10% 'figlet Exam challenger && echo "Login name: " && read name && echo $name > /scoreboard/new_entry && exit 0'
+    echo "[WIP]" > /result/$CLVL
+    tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
+    tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo "username: " && read name && echo "$name" > /scoreboard/new_entry && sleep .5'
     tmux select-pane -t 2
     tmux send-keys -t kodmaschine "$subjectpdf" C-m
     tmux select-pane -t 3
     killall -9 vim 2>/dev/null
     tmux send-keys -t kodmaschine "$challenge" C-m
 else
-    tmux popup -t kodmaschine:0 -h 40% -w 40% -x 10% -y 10% "cat /result/$((CLVL-1)) | figlet -t -c; echo -e '\n\nPress ESC to close this window.' && exit 0"
+    tmux popup -E -t kodmaschine "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
+    echo "Exiting because of exam fail"
+    exit
 fi
 
 # Wait for user to enter their name
@@ -70,7 +58,17 @@ name=$(cat /scoreboard/new_entry)
 time=$(cat /scoreboard/current_user_time)
 
 # Add user to scoreboard
-echo "$CLVL $time $name" >> /scoreboard/score.board
+echo "$((CLVL-1)) $time $name" >> /scoreboard/score.board
 
 # Sort scoreboard
-sort -k2 -n /scoreboard/score.board | tee /scoreboard/score.board
+sort -k1,1nr -k2,2n -k3,3n /scoreboard/score.board > /scoreboard/score.board.sorted
+mv /scoreboard/score.board.sorted /scoreboard/score.board
+
+# End if challenge complete
+if [ $CLVL -eq 4 ]; then
+	sleep 0.1
+	tmux popup -E -t kodmaschine "figlet -t -c Congrats $name | /tte fireworks --launch-delay 2 ; echo 'Exam passed! Rebooting...'"
+	sleep 42
+	tmux kill-session -t kodmaschine
+	# tmux kill-server # maybe use this
+fi

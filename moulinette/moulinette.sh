@@ -14,6 +14,9 @@ EXPECTEDF=$4
 
 echo "Good debugging"
 
+echo "[WIP]" > /result/$LEVEL
+echo "Lev: $LEVEL Src: $SOURCEF Main: $MAINF Exp: $EXPECTEDF"
+
 if [ ! -f $SOURCEF ]; then
     echo "Error: source file ('$SOURCEF') not found!"
     exit 1
@@ -34,9 +37,9 @@ if [ ! -f poison ]; then
     exit 1
 fi
 
-echo "[WIP]" > /result/$LEVEL
+printf "[KO]\n" > /result/$LEVEL
 
-gcc -w -O0 $MAINF $SOURCEF -o out.$LEVEL 2>&1 > /dev/null
+timeout 10 gcc -w -O0 "$MAINF" "$SOURCEF" -o "out.$LEVEL"
 
 echo "Bazooka"
 
@@ -47,12 +50,10 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
-TEST_OUTPUT=`./out.$LEVEL | cat -e`
-./out.$LEVEL > /tmp/out.$LEVEL.stdout
+timeout -k 10 5 "./out.$LEVEL" > "/tmp/out.$LEVEL.stdout"
 
 echo "quantum debugging"
 
-# if [ "$TEST_OUTPUT" = `cat -e $EXPECTEDF` ]; then # what
 if diff "/tmp/out.$LEVEL.stdout" "$EXPECTEDF"; then
     printf "[OK]\n" > /result/$LEVEL
 else
