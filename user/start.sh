@@ -34,10 +34,12 @@ start_vim_and_tmux() {
     tmux send-keys -t "${session}" "${prep}; ${title}" C-m
     tmux select-pane -t 0
     tmux send-keys -t "${session}" "${prep}; ${timer_cmd}" C-m
-    tmux send-keys -t "${session}" "${prep}; ${examprompt}" C-m
-    tmux select-pane -t 2
-    tmux send-keys -t "${session}" "${prep}; ${subjectpdf}" C-m
+    tmux splitw -t "${session}:0.{top-left}"
+    tmux send-keys -t "${session}:0.1" "clear && >/dev/null cat" C-m
+    #tmux send-keys -t "${session}" "${prep}; ${examprompt}" C-m # TODO
     tmux select-pane -t 3
+    tmux send-keys -t "${session}" "${prep}; ${subjectpdf}" C-m
+    tmux select-pane -t 4
     tmux send-keys -t "${session}" "${prep}; ${challenge1}" C-m
     tmux attach -t "${session}"
 }

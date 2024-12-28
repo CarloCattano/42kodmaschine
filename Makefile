@@ -40,7 +40,7 @@ user:	# run user
 	$(DC) -f $(COMP) run --rm user
 examshell:	# start exam
 	$(DC) -f $(COMP) exec user /root/start.sh
-attachexam: start # attaches to exam
+attachexam: up # attaches to exam
 	$(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	cp skel/result/* result/

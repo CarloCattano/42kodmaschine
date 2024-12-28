@@ -37,9 +37,9 @@ if [ $FAIL -eq 0 ]; then
     echo "[WIP]" > /result/$CLVL
     tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
     tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo "username: " && read name && echo "$name" > /scoreboard/new_entry && sleep .5'
-    tmux select-pane -t 2
-    tmux send-keys -t kodmaschine "$subjectpdf" C-m
     tmux select-pane -t 3
+    tmux send-keys -t kodmaschine "$subjectpdf" C-m
+    tmux select-pane -t 4
     killall -9 vim 2>/dev/null
     tmux send-keys -t kodmaschine "$challenge" C-m
 else
