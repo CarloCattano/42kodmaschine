@@ -6,8 +6,8 @@ window="Exam-O-Tron"
 title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
 
 # scoreboard="watch -t 'cat /result/scoreboard /scoreboard/score.board | /tte spotlights'"
-hawk1="cat /result/scoreboard; awk '{ printf \"%20s %1s %19sm%-2ss %14s %-26s\n\", \$1, \"|\", \$2, \$3, \"|\", \$4 }' /scoreboard/score.board"
-hawk2="cat /result/scoreboard; awk '\''{ printf \"%20s %1s %19sm%-2ss %14s %-26s\n\", \$1, \"|\", \$2, \$3, \"|\", \$4 }'\'' /scoreboard/score.board"
+hawk1="cat /result/scoreboard; awk '{ printf \"%20s %1s %19sm%02ds %14s %-26s\n\", \$1, \"|\", \$2, \$3, \"|\", \$4 }' /scoreboard/score.board"
+hawk2="cat /result/scoreboard; awk '\''{ printf \"%20s %1s %19sm%02ds %14s %-26s\n\", \$1, \"|\", \$2, \$3, \"|\", \$4 }'\'' /scoreboard/score.board"
 scoreboard="clear; { $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/score.board 'clear; { $hawk2; } | /tte spotlights' 1"
 
 examprompt="sleep 0.1; tmux popup -E -t ${session}:0 figlet -t -c 'PRESS ESC TO START'; exit"

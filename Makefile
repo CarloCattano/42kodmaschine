@@ -15,8 +15,7 @@ build:	# Construct
 re: kill down	# re
 	$(DC) -f $(COMP) up --build --force-recreate --remove-orphans -d
 up:	# escalate
-	#$(DC) -f $(COMP) up --build -d
-	$(DC) -f $(COMP) up -d # can't use --build when offline
+	$(DC) -f $(COMP) up --build -d # make sure to not use --no-cache and to have the alpine image locally when using --build
 down:	# deescalate
 	$(DC) -f $(COMP) down --remove-orphans
 start:	# start

@@ -1,6 +1,6 @@
 FROM alpine:3.20
 ENV TERM=tmux-256color
-RUN apk add --no-cache vim tmux figlet
+RUN apk add vim tmux figlet
 
 COPY --chmod=111 timer timer
 COPY --chmod=111 tte tte
