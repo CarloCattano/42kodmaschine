@@ -2,7 +2,9 @@
 echo RUNNING SCOREBOARD SCRIPT
 
 ### SCOREBOARD ###
-cat /scoreboard/score.board > /scoreboard/score.board.bak
+if [ -s /scoreboard/score.board ]; then
+	cp /scoreboard/score.board /scoreboard/score.board.bak
+fi
 
 # Create a scoreboard file if it doesn't exist
 if [ ! -f /scoreboard/score.board ]; then
@@ -60,9 +62,15 @@ time=$(cat /scoreboard/current_user_time)
 # Add user to scoreboard
 echo "$((CLVL-1)) $time $name" >> /scoreboard/score.board
 
-# Sort scoreboard
+# Sort scoreboard to tmp file
 sort -k1,1nr -k2,2n -k3,3n /scoreboard/score.board > /scoreboard/score.board.sorted
-mv /scoreboard/score.board.sorted /scoreboard/score.board
+
+# Mv tmp file to actual scoreboard
+if [ -s /scoreboard/score.board.sorted ]; then
+	mv /scoreboard/score.board.sorted /scoreboard/score.board
+else
+	echo "Wtf why is score.board.sorted empty???"
+fi
 
 # End if challenge complete
 if [ $CLVL -eq 4 ]; then
