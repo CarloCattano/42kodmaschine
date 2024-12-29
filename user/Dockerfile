@@ -12,6 +12,7 @@ COPY --chmod=111 dwatchcat /root/watchcat
 COPY --chmod=111 solutions/c1.c /root/c1.c
 COPY --chmod=111 solutions/fizzbuzz.c /root/fizzbuzz.c
 COPY --chmod=111 solutions/rotn.c /root/rotn.c
+COPY --chmod=111 solutions/sigill.c /root/sigill.c
 
 COPY start.sh /root/start.sh
 
