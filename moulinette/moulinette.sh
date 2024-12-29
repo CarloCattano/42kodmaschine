@@ -41,6 +41,11 @@ printf "[KO]\n" > /result/$LEVEL
 
 timeout 10 gcc -w -O0 "$MAINF" "$SOURCEF" -o "out.$LEVEL"
 
+if [ ! -f ./out.$LEVEL ]; then
+    printf "[COMPERR]\n" > /result/$LEVEL
+    exit 1
+fi
+
 echo "Bazooka"
 
 nm out.$LEVEL | grep -f poison
@@ -51,7 +56,7 @@ if [ $? -eq 0 ]; then
 fi
 
 /deep_thought ./out.$LEVEL > /result/$LEVEL
-if [ $? -ne 0 ]; then
+if [ $? -eq 252 ]; then
     printf "%s\n%s\n" "[SIGILL]" "$(cat /result/$LEVEL)" > /result/$LEVEL
     exit 1
 fi
