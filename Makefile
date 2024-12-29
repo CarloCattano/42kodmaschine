@@ -65,3 +65,12 @@ help:	# plshelp
        	Makefile
 fix: # Recover tty1 (spawns login process (/sbin/agetty) in the empty framebuffer console tty1)
 	sudo systemctl restart getty@tty1
+cheat: up
+	$(RM) -fr rendu/* result/*
+	cp skel/rendu/* rendu/
+	echo 4 > rendu/clvl
+	cp skel/result/* result/
+	echo "[OK]" > result/1
+	echo "[OK]" > result/2
+	echo "[OK]" > result/3
+	docker attach kodmaschine-user-1

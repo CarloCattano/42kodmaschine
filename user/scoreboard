@@ -42,7 +42,8 @@ elif [ $CLVL -eq 4 ]; then
 fi
 
 subjectpdf="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte print"
-subjectpdf5="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte unstable --final-gradient-steps 3 --explosion-speed 0.5 --reassembly-speed 0.3"
+#subjectpdf5="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte unstable --final-gradient-steps 3 --explosion-speed 0.5 --reassembly-speed 0.3"
+subjectpdf5="clear; cat en.subject$CLVL.pdf"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
     if [ $CLVL -eq 5 ]; then
