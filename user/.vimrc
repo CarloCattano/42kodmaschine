@@ -73,7 +73,7 @@ cnoremap term <C-u>echo "Terminal is disabled!"<CR>
 nnoremap ZZ :echo "ZZ exit is disabled!"<CR>
 nnoremap ZQ :echo "ZQ forced exit is disabled!"<CR>
 
-nnoremap HESOYAM1 :r /root/c1.c<CR>
-nnoremap HESOYAM2 :r /root/fizzbuzz.c<CR>
-nnoremap HESOYAM3 :r /root/rotn.c<CR>
-nnoremap HESOYAM4 :r /root/sigill.c<CR>
+nnoremap HESOYAM1 ggdG:r /root/c1.c<CR>:w<CR>
+nnoremap HESOYAM2 ggdG:r /root/fizzbuzz.c<CR>:w<CR>
+nnoremap HESOYAM3 ggdG:r /root/rotn.c<CR>:w<CR>
+nnoremap HESOYAM4 ggdG:r /root/sigill.c<CR>:w<CR>

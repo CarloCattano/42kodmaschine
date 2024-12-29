@@ -41,7 +41,8 @@ elif [ $CLVL -eq 4 ]; then
     fi
 fi
 
-subjectpdf="clear; cat en.subject$CLVL.pdf | /tte print"
+subjectpdf="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte print"
+subjectpdf5="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte unstable --final-gradient-steps 3 --explosion-speed 0.5 --reassembly-speed 0.3"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
     if [ $CLVL -eq 5 ]; then
@@ -53,8 +54,13 @@ if [ $FAIL -eq 0 ]; then
 	tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
     fi
     tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "c3test" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
+    2>/dev/null kill -9 $(ps afuxww|grep -v grep|grep 'tte print' | awk '{print $1}' | xargs -r)
     tmux select-pane -t 3
-    tmux send-keys -t kodmaschine "$subjectpdf" C-m
+    if [ $CLVL -lt 5 ]; then
+        tmux send-keys -t kodmaschine "$subjectpdf" C-m
+    else
+        tmux send-keys -t kodmaschine "$subjectpdf5" C-m
+    fi
     tmux select-pane -t 4
     echo "$CLVL" > /rendu/clvl
     killall -9 vim 2>/dev/null
