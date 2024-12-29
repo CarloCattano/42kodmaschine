@@ -56,6 +56,8 @@ if [ ! -f /scoreboard/score.board ]; then
     touch /scoreboard/score.board
 fi
 
+echo 1 > /rendu/clvl
+
 #start_vim_and_tmux
 #sleep .1
 #/start_score
