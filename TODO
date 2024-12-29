@@ -1,2 +1,3 @@
-symlink button.service
-symlink .bash_profile
+- symlink button.service
+- symlink .bash_profile
+- SIGILL bug when compile error

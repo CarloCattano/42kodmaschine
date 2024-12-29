@@ -52,7 +52,7 @@ fi
 
 /deep_thought ./out.$LEVEL > /result/$LEVEL
 if [ $? -ne 0 ]; then
-    printf "%s\n%s\n", "[SIGILL]", "$(cat /result/$LEVEL)" > /result/$LEVEL
+    printf "%s\n%s\n" "[SIGILL]" "$(cat /result/$LEVEL)" > /result/$LEVEL
     exit 1
 fi
 
