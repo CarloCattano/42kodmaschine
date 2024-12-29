@@ -12,7 +12,7 @@ scoreboard="clear; { $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/sc
 
 examprompt="sleep 0.1; tmux popup -E -t ${session}:0 figlet -t -c 'PRESS ESC TO START'; exit"
 subjectpdf="clear; cat en.subject1.pdf | /tte print"
-challenge1="sleep 0.1; vim challenge1.c +16"
+challenge1="sleep 0.1; while :; do vim challenge1.c +16; done"
 
 timer_cmd="sleep 0.1; /timer 5 42; tmux set -g status-style 'bg=red'"
 
@@ -22,7 +22,8 @@ prep="unset PS1; stty -echo; trap '' SIGTSTP; clear"
 
 # Start Vim and Tmux with the specified file
 start_vim_and_tmux() {
-    tmux -2 new-session -ds "${session}" -x - -y -
+    tmux -2 new-session -ds "${session}" -x 240 -y 66
+    #tmux resize-window -s "${session}" -x 240 -y 66 # not sure if this is even needed
     tmux rename-window -t "${session}" "${window}"
     tmux send "sleep 0.42" C-m
     tmux splitw -v -l '75%'

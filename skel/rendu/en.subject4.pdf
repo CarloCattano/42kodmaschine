@@ -1,1 +1,18 @@
 404
+/////////////////////////////////////////////
+//                                         //
+//    INSTRUCTIONS    (illegal interception)     //
+//    (do not proceed)              //
+//  (stop reading immediately)                //
+//                                         //
+/////////////////////////////////////////////
+//    Challenge I - SIGILL                  //
+/////////////////////////////////////////////
+//                                         //
+//     //
+ The user must //??\not
+have captured a//                                     //
+    trigger a  //                                     //
+signal SIGILL -//                                     //
+//
+This incident will be reported

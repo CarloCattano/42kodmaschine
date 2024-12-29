@@ -50,6 +50,12 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
+/deep_thought ./out.$LEVEL > /result/$LEVEL
+if [ $? -ne 0 ]; then
+    printf "%s\n%s\n", "[SIGILL]", "$(cat /result/$LEVEL)" > /result/$LEVEL
+    exit 1
+fi
+
 timeout -k 10 5 "./out.$LEVEL" > "/tmp/out.$LEVEL.stdout"
 
 echo "quantum debugging"
@@ -60,5 +66,4 @@ else
     printf "[KO]\n" > /result/$LEVEL
 fi
 
-rm -f out.$LEVEL compile_log.$LEVEL
-rm -f /tmp/out.$LEVEL.stdout
+rm -f out.$LEVEL /tmp/out.$LEVEL.stdout

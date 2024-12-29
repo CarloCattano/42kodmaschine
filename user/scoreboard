@@ -11,8 +11,13 @@ if [ ! -f /scoreboard/score.board ]; then
     touch /scoreboard/score.board
 fi
 
-CLVL=3
+CLVL=4
 FAIL=1
+
+grep -Fqx "[N/A]" /result/4
+if [ $? -eq 0 ]; then
+    CLVL=3
+fi
 
 grep -Fqx "[N/A]" /result/3
 if [ $? -eq 0 ]; then
@@ -28,14 +33,26 @@ grep -Fqx "[OK]" /result/$CLVL
 if [ $? -eq 0 ]; then
     CLVL=$((CLVL+1))
     FAIL=0
+elif [ $CLVL -eq 4 ]; then
+    grep "252" /result/$CLVL
+    if [ $? -eq 0 ]; then
+	CLVL=$((CLVL+1))
+	FAIL=0
+    fi
 fi
 
 subjectpdf="clear; cat en.subject$CLVL.pdf | /tte print"
-challenge="sleep 0.1; vim challenge$CLVL.c +16"
+challenge="sleep 0.1; while :; do vim challenge$CLVL.c +16; done"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
-    echo "[WIP]" > /result/$CLVL
-    tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
+    if [ $CLVL -eq 5 ]; then
+	tmux popup -E -t kodmaschine "; echo 'SUCCESS: Illegal instruction (code dumped)'; sleep 42"
+	tmux new-window -t kodmaschine
+        tmux send-keys "stty -echo; unset PS1; clear; " "cat /result/$((CLVL - 1))" C-m "echo '[OK]: Illegal instruction successfully raised' 'This incident will be reported'" C-m	
+    else	
+	echo "[WIP]" > /result/$CLVL
+	tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
+    fi
     tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo "username: " && read name && echo "$name" > /scoreboard/new_entry && sleep .5'
     tmux select-pane -t 3
     tmux send-keys -t kodmaschine "$subjectpdf" C-m
@@ -73,7 +90,7 @@ else
 fi
 
 # End if challenge complete
-if [ $CLVL -eq 4 ]; then
+if [ $CLVL -eq 5 ]; then
 	sleep 0.1
 	tmux popup -E -t kodmaschine "figlet -t -c Congrats $name | /tte fireworks --launch-delay 2 ; echo 'Exam passed! Rebooting...'"
 	sleep 42
