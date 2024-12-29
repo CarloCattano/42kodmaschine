@@ -23,7 +23,7 @@ prep="unset PS1; stty -echo; trap '' SIGTSTP; clear"
 # Start Vim and Tmux with the specified file
 start_vim_and_tmux() {
     tmux -2 new-session -ds "${session}" -x 240 -y 66
-    #tmux resize-window -s "${session}" -x 240 -y 66 # not sure if this is even needed
+    tmux resize-window -s "${session}" -x 240 -y 66
     tmux rename-window -t "${session}" "${window}"
     tmux send "sleep 0.42" C-m
     tmux splitw -v -l '75%'
