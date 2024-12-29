@@ -58,6 +58,7 @@ if [ $FAIL -eq 0 ]; then
     tmux send-keys -t kodmaschine "$subjectpdf" C-m
     tmux select-pane -t 4
     killall -9 vim 2>/dev/null
+    sleep 0.1
     tmux send-keys -t kodmaschine "$challenge" C-m
 else
     tmux popup -E -t kodmaschine "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
