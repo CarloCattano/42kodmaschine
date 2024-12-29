@@ -36,6 +36,7 @@ logs:	# Show me results
 user:	# run user
 	$(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
+	echo 1 > rendu/clvl
 	cp skel/result/* result/
 	$(DC) -f $(COMP) run --rm user
 examshell:	# start exam
@@ -43,6 +44,7 @@ examshell:	# start exam
 attachexam: up # attaches to exam
 	$(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
+	echo 1 > rendu/clvl
 	cp skel/result/* result/
 	docker attach kodmaschine-user-1
 kill:	# murder

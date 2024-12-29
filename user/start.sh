@@ -12,7 +12,8 @@ scoreboard="clear; { $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/sc
 
 examprompt="sleep 0.1; tmux popup -E -t ${session}:0 figlet -t -c 'PRESS ESC TO START'; exit"
 subjectpdf="clear; cat en.subject1.pdf | /tte print"
-challenge1="sleep 0.1; while :; do vim challenge1.c +16; done"
+
+challenge="sleep 0.1; while :; do vim \"challenge\$(cat /rendu/clvl).c\" +17; done"
 
 timer_cmd="sleep 0.1; /timer 5 42; tmux set -g status-style 'bg=red'"
 
@@ -23,7 +24,6 @@ prep="unset PS1; stty -echo; trap '' SIGTSTP; clear"
 # Start Vim and Tmux with the specified file
 start_vim_and_tmux() {
     tmux -2 new-session -ds "${session}" -x 240 -y 66
-    tmux resize-window -s "${session}" -x 240 -y 66
     tmux rename-window -t "${session}" "${window}"
     tmux send "sleep 0.42" C-m
     tmux splitw -v -l '75%'
@@ -41,7 +41,9 @@ start_vim_and_tmux() {
     tmux select-pane -t 3
     tmux send-keys -t "${session}" "${prep}; ${subjectpdf}" C-m
     tmux select-pane -t 4
-    tmux send-keys -t "${session}" "${prep}; ${challenge1}" C-m
+    tmux send-keys -t "${session}" "${prep}; ${challenge}" C-m
+    tmux set-option default-size 240x66
+    tmux set-option window-size manual
     tmux attach -t "${session}"
 }
 
@@ -55,8 +57,6 @@ stty rows 67 cols 240
 if [ ! -f /scoreboard/score.board ]; then
     touch /scoreboard/score.board
 fi
-
-echo 1 > /rendu/clvl
 
 #start_vim_and_tmux
 #sleep .1

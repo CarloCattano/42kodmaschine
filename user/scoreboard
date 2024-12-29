@@ -42,8 +42,6 @@ elif [ $CLVL -eq 4 ]; then
 fi
 
 subjectpdf="clear; cat en.subject$CLVL.pdf | /tte print"
-echo "$CLVL" > /rendu/clvl
-challenge="sleep 0.1; while :; do vim challenge$(cat /rendu/clvl).c +16; done"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
     if [ $CLVL -eq 5 ]; then
@@ -58,6 +56,7 @@ if [ $FAIL -eq 0 ]; then
     tmux select-pane -t 3
     tmux send-keys -t kodmaschine "$subjectpdf" C-m
     tmux select-pane -t 4
+    echo "$CLVL" > /rendu/clvl
     killall -9 vim 2>/dev/null
 else
     tmux popup -E -t kodmaschine "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
