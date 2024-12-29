@@ -52,7 +52,7 @@ if [ $FAIL -eq 0 ]; then
 	echo "[WIP]" > /result/$CLVL
 	tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
     fi
-    tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo "username: " && read name && echo "$name" > /scoreboard/new_entry && sleep .5'
+    tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "c3test" ] && echo "$name" > /scoreboard/new_entry && sleep .5'
     tmux select-pane -t 3
     tmux send-keys -t kodmaschine "$subjectpdf" C-m
     tmux select-pane -t 4

@@ -76,3 +76,4 @@ nnoremap ZQ :echo "ZQ forced exit is disabled!"<CR>
 nnoremap HESOYAM1 :r /root/c1.c<CR>
 nnoremap HESOYAM2 :r /root/fizzbuzz.c<CR>
 nnoremap HESOYAM3 :r /root/rotn.c<CR>
+nnoremap HESOYAM4 :r /root/sigill.c<CR>
