@@ -9,5 +9,5 @@ if [ "$(tty)" == "/dev/tty1" ]; then
     #make attachexam
     make restartexam
     #make cheat
-    #logout
+    logout
 fi

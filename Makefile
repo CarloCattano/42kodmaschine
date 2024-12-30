@@ -8,7 +8,7 @@ cyn := \033[36m
 magb := \033[1;35m
 clr := \033[0m
 
-.PHONY: build up down start stop clean ps logs user kill moulinette help
+.PHONY: build up down start stop clean ps logs user kill moulinette dirs help
 
 build:	# Construct
 	$(DC) -f $(COMP) build
@@ -25,27 +25,21 @@ stop:	# stop
 clean: stop	# prune AF
 	@printf "$(cyn)This will fully prune the docker system!\n$(magb)Are you sure? $(cyn)(Y/n)$(clr) "
 	@$(shell read CONFIRM; if [[ $$CONFIRM == 'Y' ]]; then docker system prune -af ; fi)
-	sudo -$(RM) -f ./result/1
-	sudo -$(RM) -f ./result/2
-	sudo -$(RM) -f ./result/3
-	sudo -$(RM) -f ./result/.session
+	sudo -$(RM) -f ./result/*
 ps:	# Show me the procs
 	$(DC) -f $(COMP) ps
 logs:	# Show me results
 	$(DC) -f $(COMP) logs --tail=100 -f moulinette
-user:	# run user
+dirs: 	# Ensure clean working dirs
 	sudo $(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	echo 1 > rendu/clvl
 	cp skel/result/* result/
+user: | dirs	# run user
 	$(DC) -f $(COMP) run --rm user
 examshell:	# start exam
 	$(DC) -f $(COMP) exec user /root/start.sh
-restartexam: kill up
-	sudo $(RM) -fr rendu/* result/*
-	cp skel/rendu/* rendu/
-	echo 1 > rendu/clvl
-	cp skel/result/* result/
+restartexam: kill up | dirs
 	docker attach kodmaschine-user-1
 attachexam:
 	docker attach kodmaschine-user-1
