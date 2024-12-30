@@ -4,23 +4,19 @@ main_session="main"
 session="kodmaschine"
 window="Exam-O-Tron"
 
-title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
-
 # scoreboard="watch -t 'cat /result/scoreboard /scoreboard/score.board | /tte spotlights'"
 hawk1="cat /result/scoreboard; awk '{ printf \"%20s %1s %19sm%02ds %14s %-26s\n\", \$1, \"|\", \$2, \$3, \"|\", \$4 }' /scoreboard/score.board"
 hawk2="cat /result/scoreboard; awk '\''{ printf \"%20s %1s %19sm%02ds %14s %-26s\n\", \$1, \"|\", \$2, \$3, \"|\", \$4 }'\'' /scoreboard/score.board"
-scoreboard="clear; { $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/score.board 'clear; { $hawk2; } | /tte spotlights' 1"
 
-examprompt="sleep 0.1; tmux popup -E -t ${session} -c '$(tmux lsc -t "${session}" | cut -d: -f1)' figlet -t -c 'PRESS ESC TO START'; exit"
-subjectpdf="clear; cat en.subject1.pdf | /tte print"
+prep="unset PS1; stty -echo; trap '' SIGTSTP; clear; sleep 0.1"
 
-challenge="sleep 0.1; while :; do vim \"challenge\$(cat /rendu/clvl).c\" +17; done"
-
+scoreboard="{ $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/score.board 'clear; { $hawk2; } | /tte spotlights' 1"
+title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
+timer_cmd="/timer 5 42; tmux set -g status-style 'bg=red'"
+examprompt="tmux popup -E -t '${session}' -c '$(tmux lsc -t "${session}" | cut -d: -f1)' figlet -t -c 'PRESS ESC TO START'; exit"
+subjectpdf="cat en.subject1.pdf | /tte print"
+challenge="while :; do vim \"challenge\$(cat /rendu/clvl).c\" +17; done"
 attach_to_nested="TMUX= tmux attach -t '${session}'"
-
-timer_cmd="sleep 0.1; /timer 5 42; tmux set -g status-style 'bg=red'"
-
-prep="unset PS1; stty -echo; trap '' SIGTSTP; clear"
 
 #status="watch -t -n 1 'cat /result/1 | figlet -t -c | /tte matrix'"
 
@@ -32,29 +28,28 @@ start_vim_and_tmux() {
     tmux set-option -g default-size 240x67
     tmux set-option -g window-size manual
 
-    tmux rename-window -t "${session}" "${window}"
+    tmux rename-window -t "${session}:0" "${window}"
 
-    tmux send-keys     -t "${session}" "sleep 0.42" C-m
-    tmux splitw        -t "${session}" -v -l '75%'
-    tmux splitw        -t "${session}" -h -l '70%'
-    tmux splitw        -t "${session}" -h -l '50%'
-    tmux send-keys     -t "${session}" "${prep}; ${scoreboard}" C-m
-    tmux select-pane   -t 0
-    tmux splitw        -t "${session}" -h -l '80%'
-    tmux send-keys     -t "${session}" "${prep}; ${title}" C-m
-    tmux select-pane   -t 0
-    tmux send-keys     -t "${session}" "${prep}; ${timer_cmd}" C-m
-    tmux splitw        -t "${session}.{top-left}"
-    tmux send-keys     -t "${session}.1" "clear && >/dev/null cat" C-m
-    #tmux send-keys    -t "${session}" "${prep}; ${examprompt}" C-m # TODO
-    tmux select-pane   -t 3
-    tmux send-keys     -t "${session}" "${prep}; ${subjectpdf}" C-m
-    tmux select-pane   -t 4
-    tmux send-keys     -t "${session}" "${prep}; ${challenge}" C-m
+    tmux send-keys     -t "${session}:0" "sleep 0.42" C-m
+    tmux splitw        -t "${session}:0" -v -l '75%'
+    tmux splitw        -t "${session}:0" -h -l '70%'
+    tmux splitw        -t "${session}:0" -h -l '50%'
+    tmux send-keys     -t "${session}:0" "${prep}; ${scoreboard}" C-m
+    tmux select-pane   -t "${session}:0.0"
+    tmux splitw        -t "${session}:0" -h -l '80%'
+    tmux send-keys     -t "${session}:0" "${prep}; ${title}" C-m
+    tmux select-pane   -t "${session}:0.0"
+    tmux send-keys     -t "${session}:0" "${prep}; ${timer_cmd}" C-m
+    tmux splitw        -t "${session}:0.{top-left}"
+    tmux send-keys     -t "${session}:0.1" "clear && >/dev/null cat" C-m
+    #tmux send-keys    -t "${session}:0" "${prep}; ${examprompt}" C-m # TODO
+    tmux select-pane   -t "${session}:0.3"
+    tmux send-keys     -t "${session}:0" "${prep}; ${subjectpdf}" C-m
+    tmux select-pane   -t "${session}:0.4"
+    tmux send-keys     -t "${session}:0" "${prep}; ${challenge}" C-m
 
-    tmux send-keys     -t "${main_session}" "${attach_to_nested}" C-m
+    tmux send-keys     -t "${main_session}:0" "${attach_to_nested}" C-m
     tmux attach        -t "${main_session}"
-    # tmux attach        -t "${session}"
 }
 
 # TODO: Fix if sent to background

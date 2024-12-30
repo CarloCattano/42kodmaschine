@@ -59,13 +59,13 @@ if [ $FAIL -eq 0 ]; then
 	fi
 	tmux popup -E -t "${session}" -c "${client}" 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "c3test" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
 	2>/dev/null kill -9 $(ps afuxww|grep -v grep|grep 'tte print' | awk '{print $1}' | xargs -r)
-	tmux select-pane -t 3
+	tmux select-pane -t "${session}:0.3"
 	if [ $CLVL -lt 5 ]; then
-		tmux send-keys -t "${session}" "$subjectpdf" C-m
+		tmux send-keys -t "${session}:0" "$subjectpdf" C-m
 	else
-		tmux send-keys -t "${session}" "$subjectpdf5" C-m
+		tmux send-keys -t "${session}:0" "$subjectpdf5" C-m
 	fi
-	tmux select-pane -t 4
+	tmux select-pane -s "${session}:0.4"
 	echo "$CLVL" > /rendu/clvl
 	killall -9 vim 2>/dev/null
 else
