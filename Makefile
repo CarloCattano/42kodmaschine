@@ -25,27 +25,29 @@ stop:	# stop
 clean: stop	# prune AF
 	@printf "$(cyn)This will fully prune the docker system!\n$(magb)Are you sure? $(cyn)(Y/n)$(clr) "
 	@$(shell read CONFIRM; if [[ $$CONFIRM == 'Y' ]]; then docker system prune -af ; fi)
-	-$(RM) -f ./result/1
-	-$(RM) -f ./result/2
-	-$(RM) -f ./result/3
-	-$(RM) -f ./result/.session
+	sudo -$(RM) -f ./result/1
+	sudo -$(RM) -f ./result/2
+	sudo -$(RM) -f ./result/3
+	sudo -$(RM) -f ./result/.session
 ps:	# Show me the procs
 	$(DC) -f $(COMP) ps
 logs:	# Show me results
 	$(DC) -f $(COMP) logs --tail=100 -f moulinette
 user:	# run user
-	$(RM) -fr rendu/* result/*
+	sudo $(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	echo 1 > rendu/clvl
 	cp skel/result/* result/
 	$(DC) -f $(COMP) run --rm user
 examshell:	# start exam
 	$(DC) -f $(COMP) exec user /root/start.sh
-restartexam: kill up # attaches to exam
-	$(RM) -fr rendu/* result/*
+restartexam: kill up
+	sudo $(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	echo 1 > rendu/clvl
 	cp skel/result/* result/
+	docker attach kodmaschine-user-1
+attachexam:
 	docker attach kodmaschine-user-1
 kill:	# murder
 	$(DC) -f $(COMP) kill user
@@ -66,7 +68,7 @@ help:	# plshelp
 fix: # Recover tty1 (spawns login process (/sbin/agetty) in the empty framebuffer console tty1)
 	sudo systemctl restart getty@tty1
 cheat: kill up
-	$(RM) -fr rendu/* result/*
+	sudo $(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	echo 4 > rendu/clvl
 	cp skel/result/* result/
