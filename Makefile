@@ -54,7 +54,7 @@ restart: kill down up	# A New Hope
 moulinette:	# grademe
 	echo MOULINETTE TARGET
 	-$(DC) -f $(COMP) exec moulinette $(shell sh ./moulinette/progress.sh)
-	-$(DC) -f $(COMP) exec user sh -c "tmux popup -E -t kodmaschine:0 'figlet -t -c Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 100 ; sleep 1'"
+	-$(DC) -f $(COMP) exec user sh -c "tmux popup -E -t kodmaschine -c $$($(DC) -f $(COMP) exec user sh -c 'tmux lsc -t kodmaschine' | cut -d: -f1) 'figlet -t -c Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 100 ; sleep 1'"
 	-$(DC) -f $(COMP) exec user /start_score
 help:	# plshelp
 	@awk 'BEGIN { \

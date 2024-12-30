@@ -1,6 +1,9 @@
 #!/bin/sh
 echo RUNNING SCOREBOARD SCRIPT
 
+session="kodmaschine"
+client="$(tmux lsc -t "${session}" | cut -d: -f1)"
+
 ### SCOREBOARD ###
 if [ -s /scoreboard/score.board ]; then
 	cp /scoreboard/score.board /scoreboard/score.board.bak
@@ -8,7 +11,7 @@ fi
 
 # Create a scoreboard file if it doesn't exist
 if [ ! -f /scoreboard/score.board ]; then
-    touch /scoreboard/score.board
+	touch /scoreboard/score.board
 fi
 
 CLVL=4
@@ -16,29 +19,29 @@ FAIL=1
 
 grep -Fqx "[N/A]" /result/4
 if [ $? -eq 0 ]; then
-    CLVL=3
+	CLVL=3
 fi
 
 grep -Fqx "[N/A]" /result/3
 if [ $? -eq 0 ]; then
-    CLVL=2
+	CLVL=2
 fi
 
 grep -Fqx "[N/A]" /result/2
 if [ $? -eq 0 ]; then
-    CLVL=1
+	CLVL=1
 fi
 
 grep -Fqx "[OK]" /result/$CLVL
 if [ $? -eq 0 ]; then
-    CLVL=$((CLVL+1))
-    FAIL=0
-elif [ $CLVL -eq 4 ]; then
-    grep "252" /result/$CLVL
-    if [ $? -eq 0 ]; then
 	CLVL=$((CLVL+1))
 	FAIL=0
-    fi
+elif [ $CLVL -eq 4 ]; then
+	grep "252" /result/$CLVL
+	if [ $? -eq 0 ]; then
+	CLVL=$((CLVL+1))
+	FAIL=0
+	fi
 fi
 
 subjectpdf="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte print"
@@ -46,34 +49,34 @@ subjectpdf="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte print"
 subjectpdf5="clear; cat en.subject$CLVL.pdf"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
-    if [ $CLVL -eq 5 ]; then
-	tmux popup -E -t kodmaschine "; echo 'SUCCESS: Illegal instruction (code dumped)'; sleep 42"
-	tmux new-window -t kodmaschine
-        tmux send-keys "stty -echo; unset PS1; clear; " "cat /result/$((CLVL - 1))" C-m "echo '[OK]: Illegal instruction successfully raised' 'This incident will be reported'" C-m	
-    else	
+	if [ $CLVL -eq 5 ]; then
+		tmux popup -E -t "${session}" -c "${client}" "; echo 'SUCCESS: Illegal instruction (code dumped)'; sleep 42"
+		tmux new-window -t "${session}"
+		tmux send-keys "stty -echo; unset PS1; clear; " "cat /result/$((CLVL - 1))" C-m "echo '[OK]: Illegal instruction successfully raised' 'This incident will be reported'" C-m	
+	else	
 	echo "[WIP]" > /result/$CLVL
-	tmux popup -E -t kodmaschine "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
-    fi
-    tmux popup -E -t kodmaschine 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "c3test" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
-    2>/dev/null kill -9 $(ps afuxww|grep -v grep|grep 'tte print' | awk '{print $1}' | xargs -r)
-    tmux select-pane -t 3
-    if [ $CLVL -lt 5 ]; then
-        tmux send-keys -t kodmaschine "$subjectpdf" C-m
-    else
-        tmux send-keys -t kodmaschine "$subjectpdf5" C-m
-    fi
-    tmux select-pane -t 4
-    echo "$CLVL" > /rendu/clvl
-    killall -9 vim 2>/dev/null
+	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
+	fi
+	tmux popup -E -t "${session}" -c "${client}" 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "c3test" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
+	2>/dev/null kill -9 $(ps afuxww|grep -v grep|grep 'tte print' | awk '{print $1}' | xargs -r)
+	tmux select-pane -t 3
+	if [ $CLVL -lt 5 ]; then
+		tmux send-keys -t "${session}" "$subjectpdf" C-m
+	else
+		tmux send-keys -t "${session}" "$subjectpdf5" C-m
+	fi
+	tmux select-pane -t 4
+	echo "$CLVL" > /rendu/clvl
+	killall -9 vim 2>/dev/null
 else
-    tmux popup -E -t kodmaschine "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
-    echo "Exiting because of exam fail"
-    exit
+	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
+	echo "Exiting because of exam fail"
+	exit
 fi
 
 # Wait for user to enter their name
 while [ ! -s /scoreboard/new_entry ]; do
-    sleep 0.5
+	sleep 0.5
 done
 
 # Read the user's name
@@ -100,8 +103,8 @@ fi
 # End if challenge complete
 if [ $CLVL -eq 5 ]; then
 	sleep 0.1
-	tmux popup -E -t kodmaschine "figlet -t -c Congrats $name | /tte fireworks --launch-delay 2 ; echo 'Exam passed! Rebooting...'"
+	tmux popup -E -t "${session}" -c "${client}" "figlet -t -c Congrats $name | /tte fireworks --launch-delay 2 ; echo 'Exam passed! Rebooting...'"
 	sleep 42
-	tmux kill-session -t kodmaschine
+	tmux kill-session -t "${session}"
 	# tmux kill-server # maybe use this
 fi
