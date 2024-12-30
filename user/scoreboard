@@ -52,7 +52,7 @@ if [ $FAIL -eq 0 ]; then
 	if [ $CLVL -eq 5 ]; then
 		tmux popup -E -t "${session}" -c "${client}" "; echo 'SUCCESS: Illegal instruction (code dumped)'; sleep 42"
 		tmux new-window -t "${session}"
-		tmux send-keys "stty -echo; unset PS1; clear; " "cat /result/$((CLVL - 1))" C-m "echo '[OK]: Illegal instruction successfully raised' 'This incident will be reported'" C-m	
+		tmux send-keys -t "${session}:0" "stty -echo; unset PS1; clear; " "cat /result/$((CLVL - 1))" C-m "echo '[OK]: Illegal instruction successfully raised' 'This incident will be reported'" C-m	
 	else	
 	echo "[WIP]" > /result/$CLVL
 	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
