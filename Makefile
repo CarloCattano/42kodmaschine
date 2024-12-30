@@ -41,7 +41,7 @@ user:	# run user
 	$(DC) -f $(COMP) run --rm user
 examshell:	# start exam
 	$(DC) -f $(COMP) exec user /root/start.sh
-attachexam: up # attaches to exam
+restartexam: kill up # attaches to exam
 	$(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	echo 1 > rendu/clvl
@@ -65,7 +65,7 @@ help:	# plshelp
        	Makefile
 fix: # Recover tty1 (spawns login process (/sbin/agetty) in the empty framebuffer console tty1)
 	sudo systemctl restart getty@tty1
-cheat: up
+cheat: kill up
 	$(RM) -fr rendu/* result/*
 	cp skel/rendu/* rendu/
 	echo 4 > rendu/clvl
