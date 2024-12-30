@@ -26,10 +26,10 @@ prep="unset PS1; stty -echo; trap '' SIGTSTP; clear"
 
 # Start Vim and Tmux with the specified file
 start_vim_and_tmux() {
-    tmux -2 new-session -d -s "${main_session}" -x 240 -y 66
-    tmux -2 new-session -d -s "${session}" -x 240 -y 65
+    tmux -2 new-session -d -s "${main_session}" -x 240 -y 67
+    tmux -2 new-session -d -s "${session}" -x 240 -y 67
 
-    tmux set-option -g default-size 240x65
+    tmux set-option -g default-size 240x67
     tmux set-option -g window-size manual
 
     tmux rename-window -t "${session}" "${window}"
