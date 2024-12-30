@@ -12,7 +12,7 @@ prep="unset PS1; stty -echo; trap '' SIGTSTP; clear; sleep 0.1"
 
 scoreboard="{ $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/score.board 'clear; { $hawk2; } | /tte spotlights' 1"
 title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
-timer_cmd="/timer 5 42; tmux set -g status-style 'bg=red'"
+timer_cmd="/timer 5 42; tmux set-option -t '${session}' -g status-style 'bg=red'"
 examprompt="tmux popup -E -t '${session}' -c '$(tmux lsc -t "${session}" | cut -d: -f1)' figlet -t -c 'PRESS ESC TO START'; exit"
 subjectpdf="cat en.subject1.pdf | /tte print"
 challenge="while :; do vim \"challenge\$(cat /rendu/clvl).c\" +17; done"
@@ -25,8 +25,8 @@ start_vim_and_tmux() {
     tmux -2 new-session -d -s "${main_session}" -x 240 -y 67
     tmux -2 new-session -d -s "${session}" -x 240 -y 67
 
-    #tmux set-option -g default-size 240x67
-    #tmux set-option -g window-size manual # what the fuck. tmux dies when this.
+    tmux set-option -t "${main_session}" default-size 240x67
+    tmux set-option -t "${main_session}" window-size manual
 
     tmux rename-window -t "${session}:0" "${window}"
 
