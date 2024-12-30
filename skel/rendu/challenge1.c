@@ -17,6 +17,8 @@ void print_a(char *string)
   // \/\/\/\/ ~~~ Your beautiful code goes here ~~~ \/\/\/\/ \\/
 }
 
+// restart from beginning of exam (rank 1) with CTRL-P, CTRL-Q
+
 // That's how we will call your function:
 // int main(void)
 // {
