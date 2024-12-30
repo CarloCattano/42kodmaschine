@@ -41,7 +41,7 @@ start_vim_and_tmux() {
     tmux select-pane   -t "${session}:0.0"
     tmux send-keys     -t "${session}:0" "${prep}; ${timer_cmd}" C-m
     tmux splitw        -t "${session}:0.{top-left}"
-    tmux send-keys     -t "${session}:0.1" "clear && >/dev/null cat" C-m
+    tmux send-keys     -t "${session}:0.1" "tty > /tmp/msgpts && clear && >/dev/null cat" C-m
     #tmux send-keys    -t "${session}:0" "${prep}; ${examprompt}" C-m # TODO
     tmux select-pane   -t "${session}:0.3"
     tmux send-keys     -t "${session}:0" "${prep}; ${subjectpdf}" C-m

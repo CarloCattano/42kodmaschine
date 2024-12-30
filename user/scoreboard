@@ -65,7 +65,7 @@ if [ $FAIL -eq 0 ]; then
 	else
 		tmux send-keys -t "${session}:0" "$subjectpdf5" C-m
 	fi
-	tmux select-pane -s "${session}:0.4"
+	tmux select-pane -t "${session}:0.4"
 	echo "$CLVL" > /rendu/clvl
 	killall -9 vim 2>/dev/null
 else
@@ -106,5 +106,5 @@ if [ $CLVL -eq 5 ]; then
 	tmux popup -E -t "${session}" -c "${client}" "figlet -t -c Congrats $name | /tte fireworks --launch-delay 2 ; echo 'Exam passed! Rebooting...'"
 	sleep 42
 	tmux kill-session -t "${session}"
-	# tmux kill-server # maybe use this
+	tmux kill-session -t "${main_session}"
 fi
