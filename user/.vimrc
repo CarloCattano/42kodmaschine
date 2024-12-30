@@ -75,6 +75,8 @@ endfor
 "cnoremap <C-M> <C-u>echo "Only :w is allowed"<CR>
 "cnoremap <C-m> <C-u>echo "Only :w is allowed"<CR>
 
+cnoremap ww <C-u>echo "Only :w is allowed"<CR>
+
 cnoremap a <C-u>echo "Only :w is allowed"<CR>
 cnoremap b <C-u>echo "Only :w is allowed"<CR>
 cnoremap c <C-u>echo "Only :w is allowed"<CR>
