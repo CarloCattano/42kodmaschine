@@ -20,5 +20,4 @@ COPY tmux.conf /root/.tmux.conf
 COPY .vimrc /root/.vimrc
 
 WORKDIR rendu
-#ENTRYPOINT ["/bin/sh", "/root/start.sh"]
-CMD ["/bin/sh", "/root/start.sh"]
+ENTRYPOINT ["/bin/sh", "/root/start.sh"]
