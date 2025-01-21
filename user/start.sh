@@ -52,6 +52,7 @@ start_vim_and_tmux() {
     tmux attach        -t "${main_session}"
 }
 
+./scoreboard
 # TODO: Fix if sent to background
 # Main loop to restart Vim and Tmux if they exit
 stty -echo

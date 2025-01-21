@@ -3,6 +3,7 @@ NAME := 42kodmaschine
 DC := docker compose
 COMP := compose.yaml
 RM := rm
+RM := rm
 
 cyn := \033[36m
 magb := \033[1;35m
