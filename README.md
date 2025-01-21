@@ -11,5 +11,8 @@ Exiting vim is nearly imposible by design, and there is scoreboard, challenge su
 ## How does it work?
 The machine is a raspberry pi with a custom image, that boots directly into a tty with a tmux session running inside an alpine container.
 
+## How does it work?
+The machine is a raspberry pi with a custom image, that boots directly into a tty with a tmux session running inside an alpine container.
+
 <br>
 <img src="./ccc.gif"/>
