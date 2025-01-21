@@ -12,4 +12,5 @@ Exiting vim is nearly imposible by design, and there is scoreboard, challenge su
 The machine is a raspberry pi with a custom image, that boots directly into a tty with a tmux session running inside an alpine container.
 
 
-gif/images here [] 
+gif/images 
+<img src="./ccc.gif"/>
