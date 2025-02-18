@@ -1,4 +1,4 @@
-*.flf
+#*.flf
 tte
 a.out
 result/1
