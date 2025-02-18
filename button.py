@@ -7,8 +7,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 button_pressed = False
-examdir = "/home/exam/kodmaschine"
-session_file = "/home/exam/kodmaschine/rendu/.session"
+examdir = path.realpath(path.dirname(__file__))
+session_file = path.join(examdir, "rendu", ".session")
 
 # TODO: Check if process is already running
 def run_moulinette():
