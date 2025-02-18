@@ -79,3 +79,8 @@ service:
 	sudo systemctl restart button
 	systemctl status button
 	@echo
+
+autologin:
+	[ -e /etc/systemd/system/getty@tty1.service.d ] && echo "getty@tty1 directory already exists! Please manually handle this situation! This must be on autologin.conf in the aforementioned directory:" && printf '\n\t[Service]\n\tExecStart=\n\tExecStart=-/sbin/agetty --autologin pi --noclear %%I $$TERM\n\n'  && exit 1
+	mkdir -p /etc/systemd/system/getty@tty1.service.d
+	printf '[Service]\nExecStart=\nExecStart=-/sbin/agetty --autologin pi --noclear %%I $$TERM' | sudo tee /etc/systemd/system/getty@tty1.service.d/autologin.conf
