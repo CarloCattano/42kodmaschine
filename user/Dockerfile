@@ -8,7 +8,7 @@ RUN pip install --break-system-packages terminaltexteffects
 RUN cp $(which tte) /tte
 
 COPY --chmod=111 timer timer
-COPY --chmod=111 tte tte
+#COPY --chmod=111 tte tte
 COPY fraktur.flf /usr/share/figlet/fonts/fraktur.flf
 COPY title /title
 COPY --chmod=111 scoreboard /start_score
