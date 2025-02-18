@@ -2,6 +2,11 @@ FROM alpine:3.20
 ENV TERM=tmux-256color
 RUN apk add vim tmux figlet man-db man-pages
 
+# Temporary fix
+RUN apk add py3-pip
+RUN pip install --break-system-packages terminaltexteffects
+RUN cp $(which tte) /tte
+
 COPY --chmod=111 timer timer
 COPY --chmod=111 tte tte
 COPY fraktur.flf /usr/share/figlet/fonts/fraktur.flf
