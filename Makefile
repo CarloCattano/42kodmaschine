@@ -71,3 +71,11 @@ cheat: kill up
 	echo "[OK]" > result/2
 	echo "[OK]" > result/3
 	docker attach kodmaschine-user-1
+
+service:
+	REPO_ROOT="$$(git rev-parse --show-toplevel)" envsubst '$$REPO_ROOT' < button.service | sudo tee /etc/systemd/system/button.service && echo "Successfully created service file" || echo "Failed to create service file"
+	@echo
+	sudo systemctl daemon-reload
+	sudo systemctl restart button
+	systemctl status button
+	@echo
