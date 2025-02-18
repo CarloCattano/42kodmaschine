@@ -53,12 +53,4 @@ while :; do
     print_as_minutes "${total_sec}"
     sleep 1s
     total_sec="$((total_sec + 1))"
-# Initialize total seconds
-total_sec=0
-
-# Infinite loop to simulate a stopwatch
-while :; do
-    print_as_minutes "${total_sec}"
-    sleep 1s
-    total_sec="$((total_sec + 1))"
 done
