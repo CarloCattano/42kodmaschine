@@ -1,15 +1,15 @@
 [Unit]
-Description=Submit button service
+Description=Submit Button Service
 After=network.target
 
 [Service]
 Type=simple
 Restart=on-failure
 User=exam
-ExecStart=sudo /usr/bin/python3 /home/exam/kodmaschine/button.py
+ExecStart=sudo /usr/bin/python3 /home/%u/kodmaschine/button.py
 
-StandardOutput=/home/exam/log
-StandardError=/home/exam/log
+StandardOutput=/home/%u/kodmaschine/kodmaschine.out
+StandardError=/home/%u/kodmaschine/kodmaschine.err
 
 [Install]
 WantedBy=multi-user.target
