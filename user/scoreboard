@@ -57,7 +57,7 @@ if [ $FAIL -eq 0 ]; then
 	echo "[WIP]" > /result/$CLVL
 	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
 	fi
-	tmux popup -E -t "${session}" -c "${client}" 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "c3test" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
+	tmux popup -E -t "${session}" -c "${client}" 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "examtest" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
 	2>/dev/null kill -9 $(ps afuxww|grep -v grep|grep 'tte print' | awk '{print $1}' | xargs -r)
 	tmux select-pane -t "${session}:0.3"
 	if [ $CLVL -lt 5 ]; then
