@@ -1,3 +1,10 @@
+########################################
+### THIS FILE IS A TEMPLATE FILE     ###
+### DO NOT INSTALL AS-IS             ###
+### RUN `make service`               ###
+### IT WILL REPLACE THE PLACEHOLDERS ###
+########################################
+
 [Unit]
 Description=Submit Button Service
 After=network.target
@@ -5,11 +12,10 @@ After=network.target
 [Service]
 Type=simple
 Restart=on-failure
-User=exam
-ExecStart=sudo /usr/bin/python3 /home/%u/kodmaschine/button.py
+ExecStart=/usr/bin/python3 ${REPO_ROOT}/button.py
 
-StandardOutput=/home/%u/kodmaschine/kodmaschine.out
-StandardError=/home/%u/kodmaschine/kodmaschine.err
+StandardOutput=${REPO_ROOT}/kodmaschine.out
+StandardError=${REPO_ROOT}/kodmaschine.err
 
 [Install]
 WantedBy=multi-user.target
