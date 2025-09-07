@@ -46,8 +46,13 @@ user:
 examshell:	# start exam
 	$(DC) -f $(COMP) exec user /root/start.sh
 restartexam:
+	$(MAKE) down
 	$(MAKE) kill
+	@echo Creating dirs
+	@sleep 1
 	$(MAKE) dirs
+	@echo Upping
+	@sleep 1
 	$(MAKE) up
 	docker attach kodmaschine-user-1
 attachexam:
