@@ -1,26 +1,15 @@
 # 42kodmaschine
+aka exam-o-tron 
 
-```bash
-make up
-make user
-```
-boots into vim .
+Done for the c3 conference 2024 by 42 Berlin students and Fablab Neukolln
 
-```bash
-make moulinette
-```
-runs the tests
+## What is it?
+A standalone machine with just a screen, a keyboard and a button.
+Users are presented with simple yet challenging coding challenges, in a tmux interface on a tty.
+Exiting vim is nearly imposible by design, and there is scoreboard, challenge subject, timer and some ascii art.
 
+## How does it work?
+The machine is a raspberry pi with a custom image, that boots directly into a tty with a tmux session running inside an alpine container.
 
-## HARDWARE standalone coding challenge totem
-
-A screen, a keyboard and a BIG red button ( submit -> push -> grademe )
-User gets booted to vim, inside an alpine container , running on a 42 minishell
-
-Simple excercises from 42,   N minutes timer to complete . Red light bulb for fail , something else for success
-
-```bash
-mkdir .ssh
-cd .ssh/
-nano authorized_keys
-```
+<br>
+<img src="./ccc.gif"/>
