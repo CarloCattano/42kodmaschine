@@ -49,7 +49,7 @@ subjectpdf="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte print"
 subjectpdf5="clear; cat en.subject$CLVL.pdf"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
-	nohup setsid play /win.mp3 & disown
+	nohup setsid play /win.mp3 &
 	if [ $CLVL -eq 5 ]; then
 		tmux popup -E -t "${session}" -c "${client}" "; echo 'SUCCESS: Illegal instruction (code dumped)'; sleep 42"
 		tmux new-window -t "${session}"
@@ -71,7 +71,7 @@ if [ $FAIL -eq 0 ]; then
 	echo "$CLVL" > /rendu/clvl
 	killall -9 vim 2>/dev/null
 else
-	nohup setsid play /rick.mp3 & disown
+	nohup setsid play /rick.mp3 &
 	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
 	echo "Exiting because of exam fail"
 	exit
