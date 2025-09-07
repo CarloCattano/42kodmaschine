@@ -11,7 +11,7 @@ hawk2="cat /result/scoreboard; awk '\''{ printf \"%20s %1s %19sm%02ds %14s %-26s
 prep="unset PS1; stty -echo; trap '' SIGTSTP; clear; sleep 0.1"
 
 scoreboard="{ $hawk1; } | /tte spotlights ; /root/watchcat /scoreboard/score.board 'clear; { $hawk2; } | /tte spotlights' 1"
-title="watch -t -n 60 'cat /title | /tte binarypath --movement-speed 3'"
+title="watch -t -n 60 'cat /title | /tte --ignore-terminal-dimensions expand --final-gradient-steps 2 --final-gradient-frame 2'"
 timer_cmd="/timer 5 42; tmux set-option -t '${session}' -g status-style 'bg=red'"
 examprompt="tmux popup -E -t '${session}' -c '$(tmux lsc -t "${session}" | cut -d: -f1)' figlet -t -c 'PRESS ESC TO START'; exit"
 subjectpdf="cat en.subject1.pdf | /tte print"
