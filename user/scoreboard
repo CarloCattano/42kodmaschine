@@ -49,14 +49,16 @@ subjectpdf="clear; cat en.subject$CLVL.pdf | 2>/dev/null /tte print"
 subjectpdf5="clear; cat en.subject$CLVL.pdf"
 # Prompt user from tmux to enter their name
 if [ $FAIL -eq 0 ]; then
+	setsid -f play /win.mp3
 	if [ $CLVL -eq 5 ]; then
 		tmux popup -E -t "${session}" -c "${client}" "; echo 'SUCCESS: Illegal instruction (code dumped)'; sleep 42"
 		tmux new-window -t "${session}"
 		tmux send-keys -t "${session}:0" "stty -echo; unset PS1; clear; " "cat /result/$((CLVL - 1))" C-m "echo '[OK]: Illegal instruction successfully raised' 'This incident will be reported'" C-m	
 	else	
-	echo "[WIP]" > /result/$CLVL
-	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
+		echo "[WIP]" > /result/$CLVL
+		tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL - 1)) | figlet -t -c | /tte beams ; sleep 2"
 	fi
+
 	tmux popup -E -t "${session}" -c "${client}" 'figlet "Level '"$((CLVL - 1))"' passed!" && echo -n "username: " && while :; do read name; if [ "${#name}" -le "20" ]; then break; fi; echo "username must be at most 20 characters!"; echo -n "username: "; done; [ ! "$name" = "examtest" ] && echo "$name" > /scoreboard/new_entry || echo "aaaaaaaaaaaaaaaaaaaaa" > /scoreboard/new_entry ; sleep .5'
 	2>/dev/null kill -9 $(ps afuxww|grep -v grep|grep 'tte print' | awk '{print $1}' | xargs -r)
 	tmux select-pane -t "${session}:0.3"
@@ -69,6 +71,7 @@ if [ $FAIL -eq 0 ]; then
 	echo "$CLVL" > /rendu/clvl
 	killall -9 vim 2>/dev/null
 else
+	setsid -f play /rick.mp3
 	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
 	echo "Exiting because of exam fail"
 	exit

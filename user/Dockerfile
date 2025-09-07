@@ -1,6 +1,6 @@
 FROM alpine:3.20
 ENV TERM=tmux-256color
-RUN apk add vim tmux figlet man-db man-pages
+RUN apk add vim tmux figlet man-db man-pages sox
 
 # Temporary fix
 RUN apk add py3-pip
@@ -13,6 +13,10 @@ COPY fraktur.flf /usr/share/figlet/fonts/fraktur.flf
 COPY title /title
 COPY --chmod=111 scoreboard /start_score
 COPY --chmod=111 dwatchcat /root/watchcat
+
+# copy over media
+COPY win.mp3 /
+COPY rick.mp3 /
 
 COPY --chmod=111 solutions/c1.c /root/c1.c
 COPY --chmod=111 solutions/fizzbuzz.c /root/fizzbuzz.c

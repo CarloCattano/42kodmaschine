@@ -12,6 +12,7 @@ services:
       - ./rendu:/rendu
       - ./result:/result
       - ./scoreboard:/scoreboard
+      - /dev/snd:/dev/snd
     restart: 'unless-stopped'
 
   moulinette:
