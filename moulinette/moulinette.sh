@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 USAGE="Usage: moulinette.sh <level> <source file> <main source file> <expected result>"
 
 if [ "$#" -ne 4 ]; then
@@ -61,6 +63,7 @@ if [ $? -eq 252 ]; then
     exit 1
 fi
 
+echo "Before timeout"
 timeout -k 10 5 "./out.$LEVEL" > "/tmp/out.$LEVEL.stdout"
 
 echo "quantum debugging"
