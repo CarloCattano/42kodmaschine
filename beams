@@ -1,0 +1,2 @@
+#!/bin/sh
+docker exec -it kodmaschine-user-1 sh -c "echo \"\$1\" | figlet | /tte beams > /dev/pts/7" sh "$1"
