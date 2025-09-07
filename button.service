@@ -14,8 +14,8 @@ Type=simple
 Restart=on-failure
 ExecStart=/usr/bin/python3 ${REPO_ROOT}/button.py
 
-StandardOutput=${REPO_ROOT}/kodmaschine.out
-StandardError=${REPO_ROOT}/kodmaschine.err
+StandardOutput=${REPO_ROOT}/exam-o-tron.out
+StandardError=${REPO_ROOT}/exam-o-tron.err
 
 [Install]
 WantedBy=multi-user.target
