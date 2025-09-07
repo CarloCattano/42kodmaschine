@@ -1,5 +1,4 @@
-# 42kodmaschine
-aka exam-o-tron 
+# Exam-O-Tron
 
 Done for the c3 conference 2024 by 42 Berlin students and Fablab Neukolln
 

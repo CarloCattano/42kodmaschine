@@ -1,5 +1,5 @@
 # version: '42'  # Specify the Docker Compose version
-name: "kodmaschine"
+name: "exam-o-tron"
 
 services:
   user:

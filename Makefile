@@ -1,4 +1,4 @@
-NAME := 42kodmaschine
+NAME := 42exam-o-tron
 
 DC := docker compose
 COMP := compose.yaml
@@ -54,9 +54,9 @@ restartexam:
 	@echo Upping
 	@sleep 1
 	$(MAKE) up
-	docker attach kodmaschine-user-1
+	docker attach exam-o-tron-user-1
 attachexam:
-	docker attach kodmaschine-user-1
+	docker attach exam-o-tron-user-1
 kill:	# murder
 	-docker rm -f $(docker ps -q) 1>/dev/null 2>/dev/null
 	$(DC) -f $(COMP) kill user
@@ -68,7 +68,7 @@ restart:
 moulinette:	# grademe
 	echo MOULINETTE TARGET
 	-$(DC) -f $(COMP) exec moulinette $(shell sh ./moulinette/progress.sh)
-	-$(DC) -f $(COMP) exec user sh -c "tmux popup -E -t kodmaschine -c $$($(DC) -f $(COMP) exec user sh -c 'tmux lsc -t kodmaschine' | cut -d: -f1) 'figlet -t -c Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 100 ; sleep 1'"
+	-$(DC) -f $(COMP) exec user sh -c "tmux popup -E -t exam-o-tron -c $$($(DC) -f $(COMP) exec user sh -c 'tmux lsc -t exam-o-tron' | cut -d: -f1) 'figlet -t -c Loading... please wait... Calculating results... | /tte vhstape --total-glitch-time 100 ; sleep 1'"
 	-$(DC) -f $(COMP) exec user /start_score
 help:	# plshelp
 	@awk 'BEGIN { \
@@ -89,7 +89,7 @@ cheat:
 	echo "[OK]" > result/1
 	echo "[OK]" > result/2
 	echo "[OK]" > result/3
-	docker attach kodmaschine-user-1
+	docker attach exam-o-tron-user-1
 
 service:
 	@REPO_ROOT="$$(git rev-parse --show-toplevel)" envsubst '$$REPO_ROOT' < button.service | sudo tee /etc/systemd/system/button.service && echo "Successfully created service file" || echo "Failed to create service file"
