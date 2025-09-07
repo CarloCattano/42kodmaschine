@@ -72,3 +72,4 @@ else
 fi
 
 rm -f out.$LEVEL /tmp/out.$LEVEL.stdout
+echo "done"
