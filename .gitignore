@@ -10,3 +10,4 @@ scoreboard/current_user_time
 scoreboard/*
 rendu/
 result/
+!skel/result
