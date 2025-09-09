@@ -112,6 +112,6 @@ if [ $CLVL -eq 5 ]; then
 	tmux kill-session -t "${main_session}"
 fi
 
-if [ -s /scoreboard/score.board -eq 1]; then
+if [ -s /scoreboard/score.board -eq 1 ]; then
     cat /scoreboard/score.board.bak > /scoreboard/score.board
 fi
