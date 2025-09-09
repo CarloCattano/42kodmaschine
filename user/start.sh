@@ -32,11 +32,11 @@ start_vim_and_tmux() {
 
     tmux send-keys     -t "${session}:0" "sleep 0.42" C-m
     tmux splitw        -t "${session}:0" -v -l '75%'
-    tmux splitw        -t "${session}:0" -h -l '70%'
-    tmux splitw        -t "${session}:0" -h -l '50%'
+    tmux splitw        -t "${session}:0" -h -l '80%'
+    tmux splitw        -t "${session}:0" -h -l '58%'
     tmux send-keys     -t "${session}:0" "${prep}; ${scoreboard}" C-m
     tmux select-pane   -t "${session}:0.0"
-    tmux splitw        -t "${session}:0" -h -l '80%'
+    tmux splitw        -t "${session}:0" -h -l '85%'
     tmux send-keys     -t "${session}:0" "${prep}; ${title}" C-m
     tmux select-pane   -t "${session}:0.0"
     tmux send-keys     -t "${session}:0" "${prep}; ${timer_cmd}" C-m
