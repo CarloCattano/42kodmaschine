@@ -71,7 +71,7 @@ if [ $FAIL -eq 0 ]; then
 	echo "$CLVL" > /rendu/clvl
 	killall -9 vim 2>/dev/null
 else
-	nohup setsid play /rick.mp3 &
+	nohup setsid play /fail.mp3 &
 	tmux popup -E -t "${session}" -c "${client}" "cat /result/$((CLVL)) | figlet -t -c | /tte beams ; sleep 2"
 	echo "Exiting because of exam fail"
 	exit

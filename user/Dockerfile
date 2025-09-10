@@ -16,7 +16,7 @@ COPY --chmod=111 dwatchcat /root/watchcat
 
 # copy over media
 COPY win.mp3 /
-COPY rick.mp3 /
+COPY fail.mp3 /
 
 COPY --chmod=111 solutions/c1.c /root/c1.c
 COPY --chmod=111 solutions/fizzbuzz.c /root/fizzbuzz.c
