@@ -15,7 +15,7 @@ title="watch -t -n 60 'cat /title | /tte --ignore-terminal-dimensions expand --f
 timer_cmd="/timer 5 42; tmux set-option -t '${session}' -g status-style 'bg=red'"
 examprompt="tmux popup -E -t '${session}' -c '$(tmux lsc -t "${session}" | cut -d: -f1)' figlet -t -c 'PRESS ESC TO START'; exit"
 subjectpdf="cat en.subject1.pdf | /tte print"
-challenge="while :; do vim \"challenge\$(cat /rendu/clvl).c\" +17; done"
+challenge="while :; do PAGER=more vim \"challenge\$(cat /rendu/clvl).c\" +17; done"
 attach_to_nested="TMUX= tmux attach -t '${session}'"
 
 #status="watch -t -n 1 'cat /result/1 | figlet -t -c | /tte matrix'"
