@@ -1,5 +1,5 @@
 FROM alpine:3.20
-RUN apk add libc-dev gcc python3
+RUN apk add libc-dev gcc python3 sudo
 
 WORKDIR /kod
 

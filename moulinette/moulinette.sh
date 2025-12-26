@@ -57,14 +57,14 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
-timeout -k 10 5 /deep_thought ./out.$LEVEL > /result/$LEVEL
+timeout -k 10 5 sudo -u nobody /deep_thought ./out.$LEVEL > /result/$LEVEL
 if [ $? -eq 252 ]; then
     printf "%s\n%s\n" "[SIGILL]" "$(cat /result/$LEVEL)" > /result/$LEVEL
     exit 1
 fi
 
 echo "Before timeout"
-timeout -k 10 5 "./out.$LEVEL" > "/tmp/out.$LEVEL.stdout"
+timeout -k 10 5 sudo -u nobody "./out.$LEVEL" > "/tmp/out.$LEVEL.stdout"
 
 echo "quantum debugging"
 
