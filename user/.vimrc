@@ -370,6 +370,9 @@ cnoremap <BS> <C-u>echo "Only :w is allowed"<CR>
 nnoremap ZZ :echo "ZZ exit is disabled!"<CR>
 nnoremap ZQ :echo "ZQ forced exit is disabled!"<CR>
 
+nnoremap gf :echo "gf is disabled!"<CR>
+inoremap <C-x><C-f> <ESC>:echo 'Ctrl-xCtrl-f is disabled!'<CR>
+
 nnoremap Q :echo "Ex mode is disabled!"<CR>
 nnoremap ! :echo "Filters are disabled!"<CR>
 
